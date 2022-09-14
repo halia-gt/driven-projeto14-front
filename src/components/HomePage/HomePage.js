@@ -34,6 +34,30 @@ export default function HomePage() {
               <PhotoInfoPrice>R$ 120,00</PhotoInfoPrice>
             </PhotoInfoContainer>
           </PhotoContainer>
+          <PhotoContainer>
+            <Photo alt="model" src="../assets/img/model.png" />
+            <PhotoInfoContainer>
+              <PhotoInfoBrand>Dorothy Perkins</PhotoInfoBrand>
+              <PhotoInfoName>Evening Dress</PhotoInfoName>
+              <PhotoInfoPrice>R$ 120,00</PhotoInfoPrice>
+            </PhotoInfoContainer>
+          </PhotoContainer>
+          <PhotoContainer>
+            <Photo alt="model" src="../assets/img/model.png" />
+            <PhotoInfoContainer>
+              <PhotoInfoBrand>Dorothy Perkins</PhotoInfoBrand>
+              <PhotoInfoName>Evening Dress</PhotoInfoName>
+              <PhotoInfoPrice>R$ 120,00</PhotoInfoPrice>
+            </PhotoInfoContainer>
+          </PhotoContainer>
+          <PhotoContainer>
+            <Photo alt="model" src="../assets/img/model.png" />
+            <PhotoInfoContainer>
+              <PhotoInfoBrand>Dorothy Perkins</PhotoInfoBrand>
+              <PhotoInfoName>Evening Dress</PhotoInfoName>
+              <PhotoInfoPrice>R$ 120,00</PhotoInfoPrice>
+            </PhotoInfoContainer>
+          </PhotoContainer>
         </CarouselPhotosContainer>
       </ArrivalsContainer>
     </Wrapper>
@@ -119,6 +143,11 @@ const ArrivalsHeaderSubtile = styled.div`
 const CarouselPhotosContainer = styled.div`
   height: 100%;
   width: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  flex-direction: row;
+  column-gap: 25px;
+  overflow: auto;
   margin-bottom: 30px;
 `;
 const PhotoContainer = styled.div`
