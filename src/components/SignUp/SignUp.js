@@ -3,7 +3,6 @@ import Button from "../../assets/styles/Button";
 import Input from "../../assets/styles/Input";
 import Title from "../../assets/styles/Title";
 import { IoIosArrowBack } from "react-icons/io";
-import { IconContext } from "react-icons";
 import Wrapper from "./styles";
 import SpanLink from "../../assets/styles/SpanLink";
 import { useNavigate } from "react-router-dom";
@@ -41,9 +40,7 @@ export default function SignUp() {
 
     return (
         <Wrapper>
-            <IconContext.Provider value={{ color: "#222222", className: "icon", size: "24px" }}>
-                <IoIosArrowBack />
-            </IconContext.Provider>
+            <IoIosArrowBack />
 
             <Title>Sign up</Title>
 
