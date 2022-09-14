@@ -7,6 +7,7 @@ import { IconContext } from "react-icons";
 import Wrapper from "./styles";
 import SpanLink from "../../assets/styles/SpanLink";
 import { useNavigate } from "react-router-dom";
+import { postSignUp } from "../../services/routta";
 
 export default function SignUp() {
     const [disabled, setDisabled] = useState(false);
@@ -27,6 +28,15 @@ export default function SignUp() {
     function handleSubmit(e) {
         e.preventDefault();
         setDisabled(true);
+
+        postSignUp(data)
+            .then(() => {
+                navigate("/");
+            })
+            .catch((error) => {
+                console.log(error.request.response);
+                setDisabled(false);
+            });
     }
 
     return (
