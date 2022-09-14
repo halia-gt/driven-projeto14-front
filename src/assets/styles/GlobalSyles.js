@@ -46,6 +46,9 @@ const GlobalStyles = createGlobalStyle`
     button {
         border: none;
     }
+    input {
+        border: none;
+    }
     a {
         text-decoration: none;
     }
@@ -53,6 +56,7 @@ const GlobalStyles = createGlobalStyle`
     body {
         font-family: 'DM Sans', sans-serif;
         background-color: #F9F9F9;
+        padding: 8px 16px;
     }
 
     * {
