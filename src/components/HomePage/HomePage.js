@@ -1,6 +1,13 @@
+import { useEffect } from "react";
 import styled from "styled-components";
+import { getAllProducts } from "../../services/routta";
 
 export default function HomePage() {
+  useEffect(() => {
+    getAllProducts()
+      .then((response) => console.log(response.data))
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <Wrapper>
       <PortraitContainer>
