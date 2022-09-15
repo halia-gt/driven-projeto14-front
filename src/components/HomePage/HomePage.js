@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import { getAllProducts } from "../../services/routta";
+import Footer from "../Footer/Footer";
 
 export default function HomePage() {
   useEffect(() => {
@@ -8,6 +9,7 @@ export default function HomePage() {
       .then((response) => console.log(response.data))
       .catch((err) => console.log(err));
   }, []);
+  
   return (
     <Wrapper>
       <PortraitContainer>
@@ -67,6 +69,7 @@ export default function HomePage() {
           </PhotoContainer>
         </CarouselPhotosContainer>
       </ArrivalsContainer>
+      <Footer home={true} />
     </Wrapper>
   );
 }
@@ -120,6 +123,7 @@ const ArrivalsContainer = styled.div`
   width: 100%;
   height: 100%;
   padding: 40px 15px 0px 20px;
+  margin-bottom: 60px;
 `;
 const ArrivalsHeader = styled.div`
   height: 100px;
