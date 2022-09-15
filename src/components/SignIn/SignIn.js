@@ -6,15 +6,12 @@ import { IoIosArrowBack } from "react-icons/io";
 import SignWrapper from "../../assets/styles/SignWrapper";
 import SpanLink from "../../assets/styles/SpanLink";
 import { useNavigate } from "react-router-dom";
-import { postSignUp } from "../../services/routta";
 
-export default function SignUp() {
+export default function SignIn() {
     const [disabled, setDisabled] = useState(false);
     const [data, setData] = useState({
-        username: "",
         email: "",
         password: "",
-        confirm_password: ""
     });
     const navigate = useNavigate();
 
@@ -28,35 +25,15 @@ export default function SignUp() {
     function handleSubmit(e) {
         e.preventDefault();
         setDisabled(true);
-
-        postSignUp(data)
-            .then(() => {
-                navigate("/sign-in");
-            })
-            .catch((error) => {
-                console.log(error.request.response);
-                setDisabled(false);
-            });
     }
 
     return (
         <SignWrapper>
             <IoIosArrowBack />
 
-            <Title>Sign up</Title>
+            <Title>Login</Title>
 
             <form onSubmit={handleSubmit}>
-                <Input
-                    type="text"
-                    placeholder="Name"
-                    name="username"
-                    value={data.username}
-                    updateData={updateData}
-                    disabled={disabled}
-                >
-                    Name
-                </Input>
-
                 <Input
                     type="email"
                     placeholder="Email"
@@ -79,20 +56,9 @@ export default function SignUp() {
                     Password
                 </Input>
 
-                <Input
-                    type="password"
-                    placeholder="Confirm password"
-                    name="confirm_password"
-                    value={data.confirm_password}
-                    updateData={updateData}
-                    disabled={disabled}
-                >
-                    Confirm password
-                </Input>
+                <SpanLink changeRoute={() => navigate("/sign-up")}>Do not have an account?</SpanLink>
 
-                <SpanLink changeRoute={() => navigate("/sign-in")}>Already have an account?</SpanLink>
-
-                <Button>SIGN UP</Button>
+                <Button>LOGIN</Button>
             </form>
         </SignWrapper>
     );
