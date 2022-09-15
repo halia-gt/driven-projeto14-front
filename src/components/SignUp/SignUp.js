@@ -3,7 +3,7 @@ import Button from "../../assets/styles/Button";
 import Input from "../../assets/styles/Input";
 import Title from "../../assets/styles/Title";
 import { IoIosArrowBack } from "react-icons/io";
-import Wrapper from "./styles";
+import SignWrapper from "../../assets/styles/SignWrapper";
 import SpanLink from "../../assets/styles/SpanLink";
 import { useNavigate } from "react-router-dom";
 import { postSignUp } from "../../services/routta";
@@ -40,7 +40,7 @@ export default function SignUp() {
     }
 
     return (
-        <Wrapper>
+        <SignWrapper>
             <IoIosArrowBack />
 
             <Title>Sign up</Title>
@@ -94,6 +94,6 @@ export default function SignUp() {
 
                 <Button>SIGN UP</Button>
             </form>
-        </Wrapper>
+        </SignWrapper>
     );
 }

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
-const Wrapper = styled.main`
+const SignWrapper = styled.main`
     height: 100%;
+    padding: 8px 16px;
 
     svg {
         color: #222222;
@@ -25,4 +26,4 @@ const Wrapper = styled.main`
     }
 `;
 
-export default Wrapper;
+export default SignWrapper;

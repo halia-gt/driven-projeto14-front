@@ -56,7 +56,6 @@ const GlobalStyles = createGlobalStyle`
     body {
         font-family: 'DM Sans', sans-serif;
         background-color: #F9F9F9;
-        padding: 8px 16px;
     }
 
     * {
