@@ -14,6 +14,7 @@ export default function SignUp() {
         username: "",
         email: "",
         password: "",
+        confirm_password: ""
     });
     const navigate = useNavigate();
 
@@ -76,6 +77,17 @@ export default function SignUp() {
                     disabled={disabled}
                 >
                     Password
+                </Input>
+
+                <Input
+                    type="password"
+                    placeholder="Confirm password"
+                    name="confirm_password"
+                    value={data.confirm_password}
+                    updateData={updateData}
+                    disabled={disabled}
+                >
+                    Confirm password
                 </Input>
 
                 <SpanLink changeRoute={() => navigate("/")}>Already have an account?</SpanLink>
