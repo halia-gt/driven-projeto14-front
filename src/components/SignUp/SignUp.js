@@ -31,7 +31,7 @@ export default function SignUp() {
 
         postSignUp(data)
             .then(() => {
-                navigate("/");
+                navigate("/sign-in");
             })
             .catch((error) => {
                 console.log(error.request.response);
@@ -90,7 +90,7 @@ export default function SignUp() {
                     Confirm password
                 </Input>
 
-                <SpanLink changeRoute={() => navigate("/")}>Already have an account?</SpanLink>
+                <SpanLink changeRoute={() => navigate("/sign-in")}>Already have an account?</SpanLink>
 
                 <Button>SIGN UP</Button>
             </form>
