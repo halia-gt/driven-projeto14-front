@@ -6,6 +6,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import SignWrapper from "../../assets/styles/SignWrapper";
 import SpanLink from "../../assets/styles/SpanLink";
 import { useNavigate } from "react-router-dom";
+import { postSignIn } from "../../services/routta";
 
 export default function SignIn() {
     const [disabled, setDisabled] = useState(false);
@@ -25,6 +26,19 @@ export default function SignIn() {
     function handleSubmit(e) {
         e.preventDefault();
         setDisabled(true);
+
+        postSignIn(data)
+            .then((answer) => {
+                const token = answer.data.token;
+                const infoJSON = JSON.stringify({ token });
+                localStorage.setItem("routta", infoJSON);
+
+                navigate("/");
+            })
+            .catch((error) => {
+                console.log(error);
+                setDisabled(false);
+            });
     }
 
     return (
