@@ -41,8 +41,6 @@ export default function SignUp() {
 
     return (
         <SignWrapper>
-            <IoIosArrowBack />
-
             <Title>Sign up</Title>
 
             <form onSubmit={handleSubmit}>

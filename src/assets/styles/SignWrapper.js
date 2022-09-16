@@ -4,13 +4,8 @@ const SignWrapper = styled.main`
     height: 100%;
     padding: 8px 16px;
 
-    svg {
-        color: #222222;
-        font-size: 24px;
-    }
-
     h2 {
-        margin-top: 35px;
+        margin-top: 60px;
     }
 
     form {
