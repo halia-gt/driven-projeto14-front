@@ -29,9 +29,9 @@ export default function SignIn() {
 
         postSignIn(data)
             .then((answer) => {
-                const token = answer.data.token;
-                const infoJSON = JSON.stringify({ token });
-                localStorage.setItem("routta", infoJSON);
+                const { email, username, token } = answer.data;
+                const infoJSON = JSON.stringify({ email, username, token });
+                localStorage.setItem("routtastore", infoJSON);
 
                 navigate("/");
             })
@@ -43,8 +43,6 @@ export default function SignIn() {
 
     return (
         <SignWrapper>
-            <IoIosArrowBack />
-
             <Title>Login</Title>
 
             <form onSubmit={handleSubmit}>

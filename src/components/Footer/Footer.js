@@ -34,7 +34,7 @@ export default function Footer({ home = false, news = false, shop = false, bag =
                 {bag ? <IoBagHandle /> : <IoBagHandleOutline />}
                 <p>Bag</p>
             </BagWrapper>
-            <ProfileWrapper login={profile} onClick={() => navigate("/sign-in")}>
+            <ProfileWrapper login={profile} onClick={() => navigate("/profile")}>
                 {profile ? <IoPerson /> : <IoPersonOutline />}
                 <p>Profile</p>
             </ProfileWrapper>

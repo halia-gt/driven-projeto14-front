@@ -3,7 +3,7 @@ import axios from "axios";
 const BASE_URL = "http://localhost:5000";
 
 function createHeaders() {
-  const auth = JSON.parse(localStorage.getItem("routta"));
+  const auth = JSON.parse(localStorage.getItem("routtastore"));
   const config = {
     headers: {
       Authorization: `Bearer ${auth.token}`,
@@ -28,4 +28,10 @@ function getAllProducts() {
   return promise;
 }
 
-export { postSignUp, postSignIn, getAllProducts };
+function logout() {
+    const config = createHeaders();
+    const promise = axios.delete(`${BASE_URL}/auth/sign-in`, config);
+    return promise;
+}
+
+export { postSignUp, postSignIn, getAllProducts, logout };
