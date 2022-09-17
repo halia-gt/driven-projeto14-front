@@ -71,7 +71,7 @@ export default function DetailsPage() {
 
     function addToCart() {
         const data = {
-            productId: id,
+            productId: id.productId,
             name: garmetInfo.displayName,
             size,
             color,
@@ -80,7 +80,7 @@ export default function DetailsPage() {
         }
         
         addCart(data)
-            .then((answer) => {
+            .then(() => {
                 navigate("/bag");
             })
             .catch((error) => {
