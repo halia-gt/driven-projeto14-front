@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { getAllProducts } from "../../services/routta";
+import { useNavigate } from "react-router-dom";
+import { getAllProducts, getProductById } from "../../services/routta";
 import Footer from "../Footer/Footer";
 import {
   Wrapper,
@@ -27,6 +28,7 @@ import {
 
 export default function HomePage() {
   const [clothesInfo, setClothesInfo] = useState([]);
+  const navigate = useNavigate();
   function getRandomProduct() {
     return Math.floor(Math.random() * 47);
   }
@@ -50,7 +52,10 @@ export default function HomePage() {
         />
         <PortraitInfoContainer>
           <PortraitText>Fashion Sale</PortraitText>
-          <PortraitButton>Check now!</PortraitButton>
+          <PortraitButton
+          >
+            Check now!
+          </PortraitButton>
         </PortraitInfoContainer>
       </PortraitContainer>
       <ArrivalsContainer>
@@ -67,19 +72,24 @@ export default function HomePage() {
         </ArrivalsHeader>
         <CarouselPhotosContainer>
           {clothesInfo
-            ? clothesInfo.map((e, index) => {
+            ? clothesInfo.map((garment, index) => {
                 return (
-                  <PhotoDetailsContainer key={index}>
+                  <PhotoDetailsContainer
+                    onClick={() => {
+                      navigate(`/details/${garment._id}`);
+                    }}
+                    key={index}
+                  >
                     <PhotoContainer>
                       <PhotoStampContainer>
                         <p>New</p>
                       </PhotoStampContainer>
-                      <Photo alt="model" src={e.defaultProductImage} />
+                      <Photo alt="model" src={garment.defaultProductImage} />
                     </PhotoContainer>
                     <PhotoInfoContainer>
                       <PhotoInfoBrand>Routta</PhotoInfoBrand>
-                      <PhotoInfoName>{e.displayName}</PhotoInfoName>
-                      <PhotoInfoPrice>{e.listPrice}</PhotoInfoPrice>
+                      <PhotoInfoName>{garment.displayName}</PhotoInfoName>
+                      <PhotoInfoPrice>{garment.listPrice}</PhotoInfoPrice>
                     </PhotoInfoContainer>
                   </PhotoDetailsContainer>
                 );
