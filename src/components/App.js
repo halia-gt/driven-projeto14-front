@@ -6,6 +6,7 @@ import SignUp from "./SignUp/SignUp";
 import Bag from "./Bag/Bag";
 import Profile from "./Profile/Profile";
 import PrivatePage from "./PrivatePage/PrivatePage";
+import ShippingAdress from "./ShippingAddress/ShippingAddress";
 
 export default function App() {
   return (
@@ -27,6 +28,11 @@ export default function App() {
                 <Route path="/profile" element={
                     <PrivatePage>
                         <Profile />
+                    </PrivatePage>
+                } />
+                <Route path="/shipping" element={
+                    <PrivatePage>
+                        <ShippingAdress />
                     </PrivatePage>
                 } />
             </Routes>
