@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Input from "../../assets/styles/Input";
 import Button from "../../assets/styles/Button";
 import Title from "../../assets/styles/Title";
+import Footer from "../Footer/Footer";
 
 export default function ShippingAdress() {
     const [disabled, setDisabled] = useState(false);
@@ -87,6 +88,8 @@ export default function ShippingAdress() {
 
                 <Button>SAVE ADDRESS</Button>
             </form>
+
+            <Footer profile={true} />
         </Wrapper>
 
     );

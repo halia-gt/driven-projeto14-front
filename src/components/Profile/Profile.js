@@ -37,7 +37,14 @@ export default function Profile() {
                         <p>Not your account? Logout</p>
                     </div>
                     <IoIosArrowForward />
+                </DivWrapper>
 
+                <DivWrapper onClick={() => {navigate("/shipping")}}>
+                    <div>
+                        <h3>Shipping address</h3>
+                        <p>You add an address</p>
+                    </div>
+                    <IoIosArrowForward />
                 </DivWrapper>
             </Session>
             <Footer profile={true} />
@@ -103,6 +110,7 @@ const DivWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 72px;
 
     h3 {
         font-size: 16px;
