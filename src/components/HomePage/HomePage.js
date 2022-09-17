@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAllProducts, getProductById } from "../../services/routta";
+import { getAllProducts } from "../../services/routta";
 import Footer from "../Footer/Footer";
 import {
   Wrapper,
