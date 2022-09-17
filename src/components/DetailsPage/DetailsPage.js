@@ -1,6 +1,6 @@
 import { IoIosArrowBack } from "react-icons/io";
-import { useEffect, useState } from "react";
-import { getAllProducts, getProductById } from "../../services/routta";
+import { useContext, useEffect, useState } from "react";
+import { addCart, getAllProducts, getProductById } from "../../services/routta";
 import { useNavigate, useParams } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import { ButtonGroup } from "react-bootstrap";
@@ -32,48 +32,78 @@ import {
   SelectionButtonsContainer,
   Spacer,
 } from "./styles";
+import UserContext from "../../contexts/UserContext";
 
 export default function DetailsPage() {
-  const [garmetInfo, setGarmetInfo] = useState();
-  const [size, setSize] = useState("---");
-  const [color, setColor] = useState("--");
-  const [clothesInfo, setClothesInfo] = useState([]);
-  function getRandomProduct() {
-    return Math.floor(Math.random() * 47);
-  }
-  const id = useParams();
-  const navigate = useNavigate();
-  useEffect(() => {
-    getAllProducts()
-      .then((response) => {
-        const data = response.data;
-        for (let i = 0; i < 6; i++) {
-          setClothesInfo((clothes) => [...clothes, data[getRandomProduct()]]);
-        }
-      })
-      .catch((err) => console.log(err));
-    getProductById(id.productId)
-      .then((response) => {
-        setGarmetInfo(response.data[0]);
-      })
-      .catch((err) => console.log(err));
-  }, [id]);
-  //console.log(garmetInfo);
+    const { user, setUser } = useContext(UserContext);
+    const [garmetInfo, setGarmetInfo] = useState();
+    const [size, setSize] = useState("---");
+    const [color, setColor] = useState("--");
+    const [clothesInfo, setClothesInfo] = useState([]);
+    function getRandomProduct() {
+        return Math.floor(Math.random() * 47);
+    }
+    const id = useParams();
+    const navigate = useNavigate();
+    useEffect(() => {
+        getAllProducts()
+        .then((response) => {
+            const data = response.data;
+            for (let i = 0; i < 6; i++) {
+                setClothesInfo((clothes) => [...clothes, data[getRandomProduct()]]);
+            }
+        })
+        .catch((err) => console.log(err));
+        getProductById(id.productId)
+        .then((response) => {
+            setGarmetInfo(response.data[0]);
+        })
+        .catch((err) => console.log(err));
+    }, [id]);
+    //console.log(garmetInfo);
 
-  function handleDropDownSize(event) {
-    const choosenSize = event.replace("#", "");
-    setSize(choosenSize);
-  }
-  function handleDropDownColor(event) {
-    const choosenColor = event.replace("#", "");
-    setColor(choosenColor);
-  }
+    function handleDropDownSize(event) {
+        const choosenSize = event.replace("#", "");
+        setSize(choosenSize);
+    }
+    function handleDropDownColor(event) {
+        const choosenColor = event.replace("#", "");
+        setColor(choosenColor);
+    }
+
+    function addToCart() {
+        const data = {
+            productId: id,
+            name: garmetInfo.displayName,
+            size,
+            color,
+            price: garmetInfo.listPrice
+        }
+        
+        addCart(data)
+            .then((answer) => {
+                const userWithCart = {
+                    ...user,
+                    cart: [
+                        ...user.cart,
+                        answer.data
+                    ]
+                }
+
+                setUser(userWithCart);
+                navigate("/bag");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
   return garmetInfo ? (
     <Wrapper>
       <AppBar>
         <IoIosArrowBack
           onClick={() => {
-            navigate("/home");
+            navigate("/");
           }}
           size="1.5em"
         />
@@ -172,7 +202,7 @@ export default function DetailsPage() {
             .replace("/", "")}
         </InfoDescriptionText>
       </GarmentInfoContainer>
-      <CartButton>Add to Cart</CartButton>
+      <CartButton onClick={addToCart}>Add to Cart</CartButton>
       <MoreItemsContainer>
         <MoreItemsLeading>You can also like this</MoreItemsLeading>
         <MoreItemsTrailing>7 items</MoreItemsTrailing>

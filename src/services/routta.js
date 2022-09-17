@@ -52,4 +52,10 @@ function addAddress(body) {
     return promise;
 }
 
-export { postSignUp, postSignIn, getAllProducts, getProductById, logout, addAddress, getUser };
+function addCart(body) {
+    const config = createHeaders();
+    const promise = axios.post(`${BASE_URL}/cart`, body, config);
+    return promise;
+}
+
+export { postSignUp, postSignIn, getAllProducts, getProductById, logout, addAddress, getUser, addCart };
