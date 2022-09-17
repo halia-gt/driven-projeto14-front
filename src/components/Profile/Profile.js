@@ -9,10 +9,6 @@ export default function Profile() {
     const auth = JSON.parse(localStorage.getItem("routtastore"));
     const navigate = useNavigate();
 
-    if (!auth) {
-        return <Navigate to="/sign-in" />
-    }
-
     function handleClick() {
         logout()
             .then(() => {
@@ -28,15 +24,21 @@ export default function Profile() {
         <Wrapper>
             <Title>My profile</Title>
             <NameWrapper>
-                <h3>{auth.username}</h3>
-                <p>{auth.email}</p>
+                <div>{auth.username[0]}</div>
+                <div>
+                    <h3>{auth.username}</h3>
+                    <p>{auth.email}</p>
+                </div>
             </NameWrapper>
             <Session>
                 <DivWrapper onClick={handleClick}>
-                    <h3>Logout</h3>
-                    <p>Not your account? Logout</p>
+                    <div>
+                        <h3>Logout</h3>
+                        <p>Not your account? Logout</p>
+                    </div>
+                    <IoIosArrowForward />
+
                 </DivWrapper>
-                <IoIosArrowForward />
             </Session>
             <Footer profile={true} />
         </Wrapper>
@@ -55,9 +57,6 @@ const Wrapper = styled.main`
 
 const Session = styled.div`
     margin-top: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     width: 100%;
 
     svg {
@@ -68,6 +67,23 @@ const Session = styled.div`
 const NameWrapper = styled.div`
     margin-top: 30px;
     font-style: italic;
+    display: flex;
+    align-items: center;
+
+    div:first-child {
+        background-color: #DB3022;
+        height: 50px;
+        width: 50px;
+        color: #FFFFFF;
+        font-size: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 20px;
+        text-transform: uppercase;
+        font-style: initial;
+    }
 
     h3 {
         text-transform: capitalize;
@@ -82,17 +98,22 @@ const NameWrapper = styled.div`
     }
 `;
 
-const DivWrapper = styled(NameWrapper)`
-    margin-top: 0;
+const DivWrapper = styled.div`
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     h3 {
         font-size: 16px;
+        color: #222222;
     }
 
     p {
         font-size: 11px;
         text-decoration: none;
         margin-top: 5px;
+        color: #9b9b9b;
     }
 `;
 

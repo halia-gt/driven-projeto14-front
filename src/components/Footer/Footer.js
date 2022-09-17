@@ -30,7 +30,7 @@ export default function Footer({ home = false, news = false, shop = false, bag =
                 {shop ? <IoCart /> : <IoCartOutline />}
                 <p>Shop</p>
             </ShopWrapper>
-            <BagWrapper bag={bag}>
+            <BagWrapper bag={bag} onClick={() => navigate("/bag")}>
                 {bag ? <IoBagHandle /> : <IoBagHandleOutline />}
                 <p>Bag</p>
             </BagWrapper>
