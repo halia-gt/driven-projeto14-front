@@ -3,48 +3,70 @@ import Footer from "../Footer/Footer";
 import Title from "../../assets/styles/Title";
 import Button from "../../assets/styles/Button";
 import { GoTrashcan } from "react-icons/go";
+import { useEffect, useState } from "react";
+import { deleteFromCart, getCart } from "../../services/routta";
 
 export default function Bag() {
+    const [ reload, setReload ] = useState(false);
+    const [ cart, setCart ] = useState([]);
+    const [ total, setTotal ] = useState(0);
+
+    useEffect(() => {
+        getCart()
+            .then((answer) => {
+                setCart(answer.data);
+                let sum = 0;
+                answer.data.forEach(product => sum = sum + Number(product.price));
+                setTotal(sum.toFixed(2));
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, [reload]);
+
+    function removeFromCart(id) {
+        deleteFromCart(id)
+            .then(() => {
+                setReload(!reload);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
     return (
         <Wrapper>
             <Title>My bag</Title>
 
             <section>
-                <Product>
-                    <img src="https://images.unsplash.com/photo-1580331451062-99ff652288d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" />
-                    <div>
-                        <GoTrashcan />
-                        <h3>Pullover</h3>
-                        <p>Color: <span>Black</span>    Size: <span>L</span></p>
-                        <h4>30.43$</h4>
-                    </div>
-                </Product>
-                <Product>
-                    <img src="https://images.unsplash.com/photo-1580331451062-99ff652288d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" />
-                    <div>
-                        <GoTrashcan />
-                        <h3>Pullover</h3>
-                        <p>Color: <span>Orange</span>    Size: <span>L</span></p>
-                        <h4>29.99$</h4>
-                    </div>
-                </Product>
-                <Product>
-                    <img src="https://images.unsplash.com/photo-1580331451062-99ff652288d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" />
-                    <div>
-                        <GoTrashcan />
-                        <h3>Pullover</h3>
-                        <p>Color: <span>Striped</span>    Size: <span>L</span></p>
-                        <h4>11.99$</h4>
-                    </div>
-                </Product>
+                {cart.map(product => (
+                        <Product key={product._id}>
+                            <img src={product.image} alt="" />
+                            <div>
+                                <GoTrashcan onClick={() => removeFromCart(product._id)}/>
+                                <h3>{product.name}</h3>
+                                <p>Color: <span>{product.color}</span>    Size: <span>{product.size}</span></p>
+                                <h4>{product.price}$</h4>
+                            </div>
+                        </Product>
+                ))}
             </section>
 
-            <Total>
-                <p>Total amount:</p>
-                <span>124$</span>
-            </Total>
+            {cart.length > 0 ? (
+                    <>
+                        <Total>
+                            <p>Total amount:</p>
+                            <span>{total}$</span>
+                        </Total>
 
-            <Button>CHECK OUT</Button>
+                        <Button>CHECK OUT</Button>
+                    </>
+                ) : (
+                    <Span>Your cart is empty</Span>
+                )
+            }
+
+
             <Footer bag={true} />
         </Wrapper>
     );
@@ -72,20 +94,17 @@ const Product = styled.section`
     background: #FFFFFF;
     box-shadow: 0px 1px 25px rgba(0, 0, 0, 0.08);
     border-radius: 8px;
+    position: relative;
 
     img {
         object-fit: cover;
-        object-position: 50% 0;
         width: 104px;
-        height: 104px;
     }
 
     div {
         padding: 12px;
         color: #222222;
         font-style: italic;
-        position: relative;
-        width: 100%;
     }
 
     svg {
@@ -98,6 +117,7 @@ const Product = styled.section`
 
     h3 {
         font-size: 16px;
+        margin-bottom: 3px;
     }
 
     p {
@@ -115,7 +135,7 @@ const Product = styled.section`
         font-style: none;
         position: absolute;
         bottom: 12px;
-        left: 12px;
+        left: 116px;
     }
 `;
 
@@ -134,4 +154,9 @@ const Total = styled.section`
         font-style: italic;
         color: #222222;
     }
+`;
+
+const Span = styled.span`
+    color: #9B9B9B;
+    font-style: italic;
 `;
