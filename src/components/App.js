@@ -50,7 +50,7 @@ export default function App() {
                 }
             />
             <Route
-                path="/profile"
+                path="/shipping"
                 element={
                     <PrivatePage>
                         <ShippingAdress />
