@@ -64,4 +64,10 @@ function getCart() {
     return promise;
 }
 
-export { postSignUp, postSignIn, getAllProducts, getProductById, logout, addAddress, getUser, addCart, getCart };
+function deleteFromCart(productId) {
+    const config = createHeaders();
+    const promise = axios.delete(`${BASE_URL}/cart/${productId}`, config);
+    return promise;
+}
+
+export { postSignUp, postSignIn, getAllProducts, getProductById, logout, addAddress, getUser, addCart, getCart, deleteFromCart };

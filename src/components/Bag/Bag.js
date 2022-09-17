@@ -4,9 +4,10 @@ import Title from "../../assets/styles/Title";
 import Button from "../../assets/styles/Button";
 import { GoTrashcan } from "react-icons/go";
 import { useEffect, useState } from "react";
-import { getCart } from "../../services/routta";
+import { deleteFromCart, getCart } from "../../services/routta";
 
 export default function Bag() {
+    const [ reload, setReload ] = useState(false);
     const [ cart, setCart ] = useState([]);
     const [ total, setTotal ] = useState(0);
 
@@ -21,7 +22,17 @@ export default function Bag() {
             .catch((error) => {
                 console.log(error);
             });
-    }, []);
+    }, [reload]);
+
+    function removeFromCart(id) {
+        deleteFromCart(id)
+            .then(() => {
+                setReload(!reload);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
 
     return (
         <Wrapper>
@@ -32,7 +43,7 @@ export default function Bag() {
                         <Product key={index}>
                             <img src={product.image} alt="" />
                             <div>
-                                <GoTrashcan />
+                                <GoTrashcan onClick={() => removeFromCart(product.productId)}/>
                                 <h3>{product.name}</h3>
                                 <p>Color: <span>{product.color}</span>    Size: <span>{product.size}</span></p>
                                 <h4>{product.price}$</h4>
