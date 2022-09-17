@@ -39,11 +39,11 @@ export default function Bag() {
             <Title>My bag</Title>
 
             <section>
-                {cart.map((product, index) => (
-                        <Product key={index}>
+                {cart.map(product => (
+                        <Product key={product._id}>
                             <img src={product.image} alt="" />
                             <div>
-                                <GoTrashcan onClick={() => removeFromCart(product.productId)}/>
+                                <GoTrashcan onClick={() => removeFromCart(product._id)}/>
                                 <h3>{product.name}</h3>
                                 <p>Color: <span>{product.color}</span>    Size: <span>{product.size}</span></p>
                                 <h4>{product.price}$</h4>
