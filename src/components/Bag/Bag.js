@@ -3,13 +3,39 @@ import Footer from "../Footer/Footer";
 import Title from "../../assets/styles/Title";
 import Button from "../../assets/styles/Button";
 import { GoTrashcan } from "react-icons/go";
+import { useEffect, useState } from "react";
+import { getCart } from "../../services/routta";
 
 export default function Bag() {
+    const [ cart, setCart ] = useState([]);
+
+    useEffect(() => {
+        getCart()
+            .then((answer) => {
+                setCart(answer.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
+
     return (
         <Wrapper>
             <Title>My bag</Title>
 
             <section>
+                {cart.map(product => (
+                        <Product key={product.productId}>
+                            <img src={product.image} alt="" />
+                            <div>
+                                <GoTrashcan />
+                                <h3>{product.name}</h3>
+                                <p>Color: <span>{product.color}</span>    Size: <span>{product.size}</span></p>
+                                <h4>{product.price}$</h4>
+                            </div>
+                        </Product>
+                ))}
+
                 <Product>
                     <img src="https://images.unsplash.com/photo-1580331451062-99ff652288d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" />
                     <div>

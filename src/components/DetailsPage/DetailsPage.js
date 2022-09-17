@@ -1,5 +1,5 @@
 import { IoIosArrowBack } from "react-icons/io";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { addCart, getAllProducts, getProductById } from "../../services/routta";
 import { useNavigate, useParams } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -32,10 +32,8 @@ import {
   SelectionButtonsContainer,
   Spacer,
 } from "./styles";
-import UserContext from "../../contexts/UserContext";
 
 export default function DetailsPage() {
-    const { user, setUser } = useContext(UserContext);
     const [garmetInfo, setGarmetInfo] = useState();
     const [size, setSize] = useState("---");
     const [color, setColor] = useState("--");
@@ -77,20 +75,12 @@ export default function DetailsPage() {
             name: garmetInfo.displayName,
             size,
             color,
-            price: garmetInfo.listPrice
+            price: garmetInfo.listPrice,
+            image: garmetInfo.defaultProductImage
         }
         
         addCart(data)
             .then((answer) => {
-                const userWithCart = {
-                    ...user,
-                    cart: [
-                        ...user.cart,
-                        answer.data
-                    ]
-                }
-
-                setUser(userWithCart);
                 navigate("/bag");
             })
             .catch((error) => {

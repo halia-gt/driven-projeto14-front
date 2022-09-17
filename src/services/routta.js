@@ -58,4 +58,10 @@ function addCart(body) {
     return promise;
 }
 
-export { postSignUp, postSignIn, getAllProducts, getProductById, logout, addAddress, getUser, addCart };
+function getCart() {
+    const config = createHeaders();
+    const promise = axios.get(`${BASE_URL}/cart`, config);
+    return promise;
+}
+
+export { postSignUp, postSignIn, getAllProducts, getProductById, logout, addAddress, getUser, addCart, getCart };
