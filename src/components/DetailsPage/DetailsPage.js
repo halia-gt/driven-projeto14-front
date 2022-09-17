@@ -2,14 +2,12 @@ import { IoIosArrowBack } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { addCart, getAllProducts, getProductById } from "../../services/routta";
 import { useNavigate, useParams } from "react-router-dom";
-import Dropdown from "react-bootstrap/Dropdown";
-import { ButtonGroup } from "react-bootstrap";
+
 import {
   Wrapper,
   AppBar,
   AppBarTitle,
   CarouselImageContainer,
-  CarouselPhotosContainer,
   CartButton,
   GarmentInfoContainer,
   Image,
@@ -18,20 +16,12 @@ import {
   InfoHeaderText,
   InfoSubtitleText,
   InfoTitle,
-  MoreItemsContainer,
-  MoreItemsLeading,
-  MoreItemsTrailing,
-  Photo,
-  PhotoContainer,
-  PhotoDetailsContainer,
-  PhotoInfoBrand,
-  PhotoInfoContainer,
-  PhotoInfoName,
-  PhotoInfoPrice,
-  PhotoStampContainer,
-  SelectionButtonsContainer,
   Spacer,
+  SpinnerWrapper,
 } from "./styles";
+import { InfinitySpin } from "react-loader-spinner";
+import YouCanAlsoLike from "./YouCanAlsoLike";
+import DropdownButtons from "./DropDownButtons";
 
 export default function DetailsPage() {
     const [garmetInfo, setGarmetInfo] = useState();
@@ -88,6 +78,7 @@ export default function DetailsPage() {
             });
     }
 
+
   return garmetInfo ? (
     <Wrapper>
       <AppBar>
@@ -101,82 +92,32 @@ export default function DetailsPage() {
         <Spacer></Spacer>
       </AppBar>
       <CarouselImageContainer>
-        {garmetInfo.variants[0].ProductImages.map((image, index) => {
-          if (index !== 1) {
-            return <Image key={index} src={image}></Image>;
-          }
-          return "";
-        })}
-      </CarouselImageContainer>
-      <SelectionButtonsContainer>
-        <Dropdown
-          style={{ height: "35px", minWidth: "100px" }}
-          size="sm"
-          onSelect={handleDropDownSize}
-          as={ButtonGroup}
-        >
-          <Dropdown.Toggle
-            style={{
-              backgroundColor: "#ffffff",
-              color: "#000000",
-              borderRadius: "30px",
-            }}
-            variant="danger"
-            id="dropdown-basic-1"
-          >
-            {`Size: ${size}`}
-          </Dropdown.Toggle>
-          <Dropdown.Menu
-            style={{
-              height: "80px",
-              mminWidth: "120px",
-
-              overflowY: "auto",
-            }}
-          >
-            {garmetInfo.variants[0].Sizes.map((size, index) => {
+        {garmetInfo.variants[imageColorIndex].ProductImages.map(
+          (image, index) => {
+            if (index !== 1) {
               return (
-                <Dropdown.Item key={index} href={`#${size.SizeName}`}>
-                  {size.SizeName}
-                </Dropdown.Item>
+                <Image
+                  key={index}
+                  alt=""
+                  src={image}
+                  onError={(event) => (event.target.style.display = "none")}
+                />
               );
-            })}
-          </Dropdown.Menu>
-        </Dropdown>
-        <Dropdown
-          style={{ height: "35px", minWidth: "120px" }}
-          size="sm"
-          onSelect={handleDropDownColor}
-          as={ButtonGroup}
-        >
-          <Dropdown.Toggle
-            style={{
-              backgroundColor: "#ffffff",
-              color: "#000000",
-              borderRadius: "30px",
-            }}
-            variant="danger"
-            id="dropdown-basic-2"
-          >
-            {`Color: ${color}`}
-          </Dropdown.Toggle>
-          <Dropdown.Menu
-            style={{ height: "80px", minWidth: "120px", overflowY: "auto" }}
-          >
-            {garmetInfo.variants.map((color, index) => {
-              if (index < 3) {
-                return (
-                  <Dropdown.Item key={index} href={`#${color.ColorName}`}>
-                    {color.ColorName}
-                  </Dropdown.Item>
-                );
-              }
-              return "";
-            })}
-          </Dropdown.Menu>
-        </Dropdown>
-        <Spacer></Spacer>
-      </SelectionButtonsContainer>
+            }
+            return "";
+          }
+        )}
+      </CarouselImageContainer>
+      <DropdownButtons
+        garmetInfo={garmetInfo}
+        size={size}
+        setSize={setSize}
+        setClothesInfo={setClothesInfo}
+        color={color}
+        setColor={setColor}
+        setImageColor={setImageColor}
+      />
+
       <GarmentInfoContainer>
         <InfoHeaderContainer>
           <InfoTitle>
@@ -188,46 +129,23 @@ export default function DetailsPage() {
         <InfoDescriptionText>
           {garmetInfo.description
             .split("div")[1]
-            .replace(/class="d_content">|<|p|>-|>/g, "")
-            .replace("/", "")}
+            .split(".")[0]
+            .replace(/class="d_content">|<|p|>-|>/g,"")
+            .replace("/", "")}.
         </InfoDescriptionText>
       </GarmentInfoContainer>
       <CartButton onClick={addToCart}>Add to Cart</CartButton>
-      <MoreItemsContainer>
-        <MoreItemsLeading>You can also like this</MoreItemsLeading>
-        <MoreItemsTrailing>7 items</MoreItemsTrailing>
-      </MoreItemsContainer>
-      <CarouselPhotosContainer>
-        {clothesInfo
-          ? clothesInfo.map((garment, index) => {
-              return (
-                <PhotoDetailsContainer
-                  onClick={() => {
-                    setClothesInfo([]);
-                    setSize("---");
-                    setColor("---");
-                    navigate(`/details/${garment._id}`);
-                  }}
-                  key={index}
-                >
-                  <PhotoContainer>
-                    <PhotoStampContainer>
-                      <p>New</p>
-                    </PhotoStampContainer>
-                    <Photo alt="model" src={garment.defaultProductImage} />
-                  </PhotoContainer>
-                  <PhotoInfoContainer>
-                    <PhotoInfoBrand>Routta</PhotoInfoBrand>
-                    <PhotoInfoName>{garment.displayName}</PhotoInfoName>
-                    <PhotoInfoPrice>{garment.listPrice}</PhotoInfoPrice>
-                  </PhotoInfoContainer>
-                </PhotoDetailsContainer>
-              );
-            })
-          : ""}
-      </CarouselPhotosContainer>
+      <YouCanAlsoLike
+        clothesInfo={clothesInfo}
+        setClothesInfo={setClothesInfo}
+        setImageColor={setImageColor}
+        setSize={setSize}
+        setColor={setColor}
+      />
     </Wrapper>
   ) : (
-    ""
+    <SpinnerWrapper>
+      <InfinitySpin width="200" color="#db3022" />
+    </SpinnerWrapper>
   );
 }

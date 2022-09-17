@@ -9,6 +9,15 @@ export const Wrapper = styled.div`
   align-items: center;
   background-color: #f9f9f9;
 `;
+export const SpinnerWrapper = styled.div`
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const AppBar = styled.div`
   width: 100%;
   height: 55px;
@@ -37,6 +46,7 @@ export const CarouselImageContainer = styled.div`
   width: 100%;
 `;
 export const Image = styled.img`
+  
   height: 100%;
   width: 280px;
   border-right: 0.5px solid grey;
@@ -159,11 +169,13 @@ export const PhotoStampContainer = styled.div`
   right: 0;
   margin: 0 8px 8px 0;
 `;
-export const MoreItemsContainer = styled.div`
+export const MoreItemsHeader = styled.div`
   height: 20px;
   width: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   padding: 0 10px;
   margin: 15px 0;
 `;
@@ -175,4 +187,10 @@ export const MoreItemsLeading = styled.p`
 export const MoreItemsTrailing = styled.p`
   font-size: 11px;
   color: #9b9b9b;
+`;
+export const MoreItemsContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
