@@ -3,39 +3,54 @@ import GlobalStyles from "../assets/styles/GlobalSyles";
 import SignIn from "./SignIn/SignIn";
 import HomePage from "./HomePage/HomePage";
 import SignUp from "./SignUp/SignUp";
-import Bag from "./Bag/Bag";
 import Profile from "./Profile/Profile";
+import DetailsPage from "./DetailsPage/DetailsPage";
 import PrivatePage from "./PrivatePage/PrivatePage";
 import ShippingAdress from "./ShippingAddress/ShippingAddress";
+import Bag from "./Bag/Bag";
 
 export default function App() {
   return (
     <BrowserRouter>
         <GlobalStyles />
-            <Routes>
-                <Route path="/" element={
-                    <PrivatePage>
-                        <HomePage />
-                    </PrivatePage>
-                } />
-                <Route path="/sign-in" element={<SignIn />} />
-                <Route path="/sign-up" element={<SignUp />} />
-                <Route path="/bag" element={
-                    <PrivatePage>
-                        <Bag />
-                    </PrivatePage>
-                } />
-                <Route path="/profile" element={
-                    <PrivatePage>
-                        <Profile />
-                    </PrivatePage>
-                } />
-                <Route path="/shipping" element={
-                    <PrivatePage>
-                        <ShippingAdress />
-                    </PrivatePage>
-                } />
-            </Routes>
+        <Routes>
+            {/*Este código é o que vale, estou deixando
+                comentado apenas para testar a rota home e details
+            */
+            /* <Route
+            path="/home"
+            element={
+                <PrivatePage>
+                <HomePage />
+                </PrivatePage>
+            }
+            />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route
+            path="/bag"
+            element={
+                <PrivatePage>
+                <Bag />
+                </PrivatePage>
+            }
+            />
+            <Route
+            path="/profile"
+            element={
+                <PrivatePage>
+                <Profile />
+                </PrivatePage>
+            }
+            /> */}
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/details/:productId" element={<DetailsPage />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/bag" element={<Bag />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/shipping" element={<ShippingAdress />} />
+        </Routes>
     </BrowserRouter>
   );
 }

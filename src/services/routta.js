@@ -1,7 +1,7 @@
 import axios from "axios";
 
-//const BASE_URL = "http://localhost:5000";
-const BASE_URL = "https://routtastore.herokuapp.com";
+const BASE_URL = "http://localhost:5000";
+//const BASE_URL = "https://routtastore.herokuapp.com";
 
 function createHeaders() {
   const auth = JSON.parse(localStorage.getItem("routtastore"));
@@ -29,10 +29,15 @@ function getAllProducts() {
   return promise;
 }
 
-function logout() {
-    const config = createHeaders();
-    const promise = axios.delete(`${BASE_URL}/auth/sign-in`, config);
-    return promise;
+function getProductById(productId) {
+  const promise = axios.get(`${BASE_URL}/products/${productId}`);
+  return promise;
 }
 
-export { postSignUp, postSignIn, getAllProducts, logout };
+function logout() {
+  const config = createHeaders();
+  const promise = axios.delete(`${BASE_URL}/auth/sign-in`, config);
+  return promise;
+}
+
+export { postSignUp, postSignIn, getAllProducts, getProductById, logout };
