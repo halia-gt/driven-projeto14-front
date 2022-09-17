@@ -37,6 +37,7 @@ export default function DetailsPage() {
   const [garmetInfo, setGarmetInfo] = useState();
   const [size, setSize] = useState("---");
   const [color, setColor] = useState("--");
+  const [imageColorIndex, setImageColor] = useState(0);
   const [clothesInfo, setClothesInfo] = useState([]);
   function getRandomProduct() {
     return Math.floor(Math.random() * 47);
@@ -66,7 +67,8 @@ export default function DetailsPage() {
   }
   function handleDropDownColor(event) {
     const choosenColor = event.replace("#", "");
-    setColor(choosenColor);
+    setImageColor(choosenColor.slice(0, 1));
+    setColor(choosenColor.slice(1));
   }
   return garmetInfo ? (
     <Wrapper>
@@ -81,7 +83,7 @@ export default function DetailsPage() {
         <Spacer></Spacer>
       </AppBar>
       <CarouselImageContainer>
-        {garmetInfo.variants[0].ProductImages.map((image, index) => {
+        {garmetInfo.variants[imageColorIndex].ProductImages.map((image, index) => {
           if (index !== 1) {
             return <Image key={index} src={image}></Image>;
           }
@@ -146,7 +148,10 @@ export default function DetailsPage() {
             {garmetInfo.variants.map((color, index) => {
               if (index < 3) {
                 return (
-                  <Dropdown.Item key={index} href={`#${color.ColorName}`}>
+                  <Dropdown.Item
+                    key={index}
+                    href={`#${index}${color.ColorName}`}
+                  >
                     {color.ColorName}
                   </Dropdown.Item>
                 );
@@ -184,6 +189,7 @@ export default function DetailsPage() {
                 <PhotoDetailsContainer
                   onClick={() => {
                     setClothesInfo([]);
+                    setImageColor(0)
                     setSize("---");
                     setColor("---");
                     navigate(`/details/${garment._id}`);
