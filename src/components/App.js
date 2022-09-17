@@ -5,17 +5,30 @@ import HomePage from "./HomePage/HomePage";
 import SignUp from "./SignUp/SignUp";
 import Bag from "./Bag/Bag";
 import Profile from "./Profile/Profile";
+import PrivatePage from "./PrivatePage/PrivatePage";
 
 export default function App() {
   return (
     <BrowserRouter>
         <GlobalStyles />
             <Routes>
-                <Route path="/" element={<HomePage />} />
+                <Route path="/" element={
+                    <PrivatePage>
+                        <HomePage />
+                    </PrivatePage>
+                } />
                 <Route path="/sign-in" element={<SignIn />} />
                 <Route path="/sign-up" element={<SignUp />} />
-                <Route path="/bag" element={<Bag />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/bag" element={
+                    <PrivatePage>
+                        <Bag />
+                    </PrivatePage>
+                } />
+                <Route path="/profile" element={
+                    <PrivatePage>
+                        <Profile />
+                    </PrivatePage>
+                } />
             </Routes>
     </BrowserRouter>
   );

@@ -2,10 +2,9 @@ import { useState } from "react";
 import Button from "../../assets/styles/Button";
 import Input from "../../assets/styles/Input";
 import Title from "../../assets/styles/Title";
-import { IoIosArrowBack } from "react-icons/io";
 import SignWrapper from "../../assets/styles/SignWrapper";
 import SpanLink from "../../assets/styles/SpanLink";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { postSignIn } from "../../services/routta";
 
 export default function SignIn() {
@@ -15,6 +14,11 @@ export default function SignIn() {
         password: "",
     });
     const navigate = useNavigate();
+    const auth = JSON.parse(localStorage.getItem("routtastore"));
+
+    if (auth) {
+        return <Navigate to="/" />
+    }
 
     function updateData(e) {
         setData({
@@ -40,6 +44,7 @@ export default function SignIn() {
                 setDisabled(false);
             });
     }
+
 
     return (
         <SignWrapper>

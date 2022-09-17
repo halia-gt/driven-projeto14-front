@@ -9,10 +9,6 @@ export default function Profile() {
     const auth = JSON.parse(localStorage.getItem("routtastore"));
     const navigate = useNavigate();
 
-    if (!auth) {
-        return <Navigate to="/sign-in" />
-    }
-
     function handleClick() {
         logout()
             .then(() => {
@@ -85,6 +81,8 @@ const NameWrapper = styled.div`
         align-items: center;
         justify-content: center;
         margin-right: 20px;
+        text-transform: uppercase;
+        font-style: initial;
     }
 
     h3 {
