@@ -99,6 +99,7 @@ const Wrapper = styled.main`
     height: 100%;
     width: 100vw;
     padding: 8px 16px;
+    margin-bottom: 100px;
 
     h2 {
         margin-top: 60px;
