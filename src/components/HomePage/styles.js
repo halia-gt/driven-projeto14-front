@@ -27,6 +27,14 @@ export const PortraitInfoContainer = styled.div`
   border: none;
   z-index: 1;
 `;
+export const SpinnerWrapper = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 export const PortraitText = styled.p`
   font-size: 46px;
   color: #ffffff;

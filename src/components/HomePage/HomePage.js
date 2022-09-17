@@ -1,22 +1,15 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { InfinitySpin } from "react-loader-spinner";
 import { getAllProducts } from "../../services/routta";
 import Footer from "../Footer/Footer";
+import NewArrivalProducts from "./NewArrivalProducts";
 import {
   Wrapper,
   PortraitContainer,
   ImagePortrait,
-  PhotoDetailsContainer,
   PortraitButton,
   PortraitInfoContainer,
   PortraitText,
-  Photo,
-  PhotoContainer,
-  PhotoInfoBrand,
-  PhotoInfoContainer,
-  PhotoInfoName,
-  PhotoInfoPrice,
-  PhotoStampContainer,
   ArrivalsContainer,
   ArrivalsHeader,
   ArrivalsHeaderSubtile,
@@ -24,11 +17,11 @@ import {
   ArrivalsHeaderTitleText,
   ArrivalsHeaderTitleTextButton,
   CarouselPhotosContainer,
+  SpinnerWrapper,
 } from "./styles";
 
 export default function HomePage() {
   const [clothesInfo, setClothesInfo] = useState([]);
-  const navigate = useNavigate();
   function getRandomProduct() {
     return Math.floor(Math.random() * 47);
   }
@@ -52,10 +45,7 @@ export default function HomePage() {
         />
         <PortraitInfoContainer>
           <PortraitText>Fashion Sale</PortraitText>
-          <PortraitButton
-          >
-            Check now!
-          </PortraitButton>
+          <PortraitButton>Check now!</PortraitButton>
         </PortraitInfoContainer>
       </PortraitContainer>
       <ArrivalsContainer>
@@ -71,30 +61,13 @@ export default function HomePage() {
           </ArrivalsHeaderSubtile>
         </ArrivalsHeader>
         <CarouselPhotosContainer>
-          {clothesInfo
-            ? clothesInfo.map((garment, index) => {
-                return (
-                  <PhotoDetailsContainer
-                    onClick={() => {
-                      navigate(`/details/${garment._id}`);
-                    }}
-                    key={index}
-                  >
-                    <PhotoContainer>
-                      <PhotoStampContainer>
-                        <p>New</p>
-                      </PhotoStampContainer>
-                      <Photo alt="model" src={garment.defaultProductImage} />
-                    </PhotoContainer>
-                    <PhotoInfoContainer>
-                      <PhotoInfoBrand>Routta</PhotoInfoBrand>
-                      <PhotoInfoName>{garment.displayName}</PhotoInfoName>
-                      <PhotoInfoPrice>{garment.listPrice}</PhotoInfoPrice>
-                    </PhotoInfoContainer>
-                  </PhotoDetailsContainer>
-                );
-              })
-            : ""}
+          {clothesInfo ? (
+            <NewArrivalProducts clothesInfo={clothesInfo} />
+          ) : (
+            <SpinnerWrapper>
+              <InfinitySpin width="200" color="#db3022" />
+            </SpinnerWrapper>
+          )}
         </CarouselPhotosContainer>
       </ArrivalsContainer>
       <Footer home={true} />
