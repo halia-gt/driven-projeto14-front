@@ -4,7 +4,7 @@ import Input from "../../assets/styles/Input";
 import Button from "../../assets/styles/Button";
 import Title from "../../assets/styles/Title";
 import Footer from "../Footer/Footer";
-import { addAddress } from "../../services/routta";
+import { addAddress } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 

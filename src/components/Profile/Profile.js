@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Title from "../../assets/styles/Title";
 import Footer from "../Footer/Footer";
 import { IoIosArrowForward } from "react-icons/io";
-import { logout } from "../../services/routta";
+import { logout } from "../../services/api";
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 
@@ -63,75 +63,74 @@ export default function Profile() {
 }
 
 const Wrapper = styled.main`
-    height: 100%;
-    width: 100vw;
-    padding: 8px 16px;
+  height: 100%;
+  width: 100vw;
+  padding: 8px 16px;
 
-    h2 {
-        margin-top: 60px;
-    }
+  h2 {
+    margin-top: 60px;
+  }
 `;
 
 const Session = styled.div`
-    margin-top: 50px;
-    width: 100%;
+  margin-top: 50px;
+  width: 100%;
 
-    svg {
-        color: #9B9B9B;
-    }
+  svg {
+    color: #9b9b9b;
+  }
 `;
 
 const NameWrapper = styled.div`
-    margin-top: 30px;
-    font-style: italic;
+  margin-top: 30px;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+
+  div:first-child {
+    background-color: #db3022;
+    height: 50px;
+    width: 50px;
+    color: #ffffff;
+    font-size: 20px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    text-transform: uppercase;
+    font-style: initial;
+  }
 
-    div:first-child {
-        background-color: #DB3022;
-        height: 50px;
-        width: 50px;
-        color: #FFFFFF;
-        font-size: 20px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 20px;
-        text-transform: uppercase;
-        font-style: initial;
-    }
+  h3 {
+    text-transform: capitalize;
+    font-size: 18px;
+    color: #222222;
+  }
 
-    h3 {
-        text-transform: capitalize;
-        font-size: 18px;
-        color: #222222;
-    }
-
-    p {
-        font-size: 14px;
-        color: #9b9b9b;
-        text-decoration: underline;
-    }
+  p {
+    font-size: 14px;
+    color: #9b9b9b;
+    text-decoration: underline;
+  }
 `;
 
 const DivWrapper = styled.div`
-    font-style: italic;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 72px;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
 
-    h3 {
-        font-size: 16px;
-        color: #222222;
-    }
+  h3 {
+    font-size: 16px;
+    color: #222222;
+  }
 
-    p {
-        font-size: 11px;
-        text-decoration: none;
-        margin-top: 5px;
-        color: #9b9b9b;
-    }
+  p {
+    font-size: 11px;
+    text-decoration: none;
+    margin-top: 5px;
+    color: #9b9b9b;
+  }
 `;
-

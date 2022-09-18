@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
-import { getUser } from "../../services/routta";
+import { getUser } from "../../services/api";
 import Loader from "../Loader/Loader";
 
 export default function PrivatePage({ children }) {

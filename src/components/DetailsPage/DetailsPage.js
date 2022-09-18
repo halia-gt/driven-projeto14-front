@@ -1,6 +1,6 @@
 import { IoIosArrowBack } from "react-icons/io";
 import { useEffect, useState } from "react";
-import { addCart, getAllProducts, getProductById } from "../../services/routta";
+import { addCart, getAllProducts, getProductById } from "../../services/api";
 import { useNavigate, useParams } from "react-router-dom";
 
 import {
@@ -20,8 +20,8 @@ import {
   SpinnerWrapper,
 } from "./styles";
 import { InfinitySpin } from "react-loader-spinner";
-import YouCanAlsoLike from "./YouCanAlsoLike";
-import DropdownButtons from "./DropDownButtons";
+import SuggestionsContainer from "./SuggestionsContainer";
+import DropDownButtons from "./DropDownButtons";
 
 export default function DetailsPage() {
   const [garmetInfo, setGarmetInfo] = useState();
@@ -29,7 +29,6 @@ export default function DetailsPage() {
   const [color, setColor] = useState("--");
   const [imageColorIndex, setImageColor] = useState(0);
   const [clothesInfo, setClothesInfo] = useState([]);
-
   function getRandomProduct() {
     return Math.floor(Math.random() * 47);
   }
@@ -41,6 +40,7 @@ export default function DetailsPage() {
     getAllProducts()
       .then((response) => {
         const data = response.data;
+        console.log(data);
         for (let i = 0; i < 6; i++) {
           setClothesInfo((clothes) => [...clothes, data[getRandomProduct()]]);
         }
@@ -53,24 +53,24 @@ export default function DetailsPage() {
       .catch((err) => console.log(err));
   }, [id]);
 
-    function addToCart() {
-        const data = {
-            productId: id.productId,
-            name: garmetInfo.displayName,
-            size,
-            color,
-            price: garmetInfo.listPrice,
-            image: garmetInfo.defaultProductImage
-        }
-        
-        addCart(data)
-            .then(() => {
-                navigate("/bag");
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
+  function addToCart() {
+    const data = {
+      productId: id.productId,
+      name: garmetInfo.displayName,
+      size,
+      color,
+      price: garmetInfo.listPrice,
+      image: garmetInfo.defaultProductImage,
+    };
+
+    addCart(data)
+      .then(() => {
+        navigate("/bag");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   return garmetInfo ? (
     <Wrapper>
@@ -101,7 +101,7 @@ export default function DetailsPage() {
           }
         )}
       </CarouselImageContainer>
-      <DropdownButtons
+      <DropDownButtons
         garmetInfo={garmetInfo}
         size={size}
         setSize={setSize}
@@ -123,12 +123,13 @@ export default function DetailsPage() {
           {garmetInfo.description
             .split("div")[1]
             .split(".")[0]
-            .replace(/class="d_content">|<|p|>-|>/g,"")
-            .replace("/", "")}.
+            .replace(/class="d_content">|<|p|>-|>/g, "")
+            .replace("/", "")}
+          .
         </InfoDescriptionText>
       </GarmentInfoContainer>
       <CartButton onClick={addToCart}>Add to Cart</CartButton>
-      <YouCanAlsoLike
+      <SuggestionsContainer
         clothesInfo={clothesInfo}
         setClothesInfo={setClothesInfo}
         setImageColor={setImageColor}

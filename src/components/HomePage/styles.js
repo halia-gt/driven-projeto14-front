@@ -8,7 +8,6 @@ export const PortraitContainer = styled.div`
   width: 100%;
   height: 60vh;
   position: relative;
-  z-index: -1;
 `;
 export const ImagePortrait = styled.img`
   width: 100%;
@@ -25,7 +24,6 @@ export const PortraitInfoContainer = styled.div`
   bottom: 0;
   margin: 0 0 28px 18px;
   border: none;
-  z-index: 1;
 `;
 export const SpinnerWrapper = styled.div`
   height: 100%;
@@ -40,7 +38,7 @@ export const PortraitText = styled.p`
   color: #ffffff;
   font-weight: bold;
 `;
-export const PortraitButton = styled.div`
+export const PortraitButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
