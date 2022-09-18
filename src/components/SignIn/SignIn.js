@@ -7,11 +7,19 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { postSignIn } from "../../services/api";
 import UserContext from "../../contexts/UserContext";
 import Lottie from "react-lottie";
-import * as animationData from "./user_login.json";
+import * as lottieUserLogin from "./user_login.json";
+import * as lottie404 from "./404.json";
 import SignInWrapper from "../../assets/styles/SignInWrapper";
+import Modal from "react-modal";
+import {
+  LottieWrapper,
+  ModalButton,
+  ModalSnackTopBar,
+} from "../../assets/styles/LoginModal";
 
 export default function SignIn() {
   const { setUser } = useContext(UserContext);
+  const [isOpen, setOpen] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [data, setData] = useState({
     email: "",
@@ -19,7 +27,19 @@ export default function SignIn() {
   });
   const navigate = useNavigate();
   const auth = JSON.parse(localStorage.getItem("routtastore"));
-
+  const customStyles = {
+    content: {
+      position: "absolute",
+      height: "250px",
+      width: "250px",
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+    },
+  };
   if (auth) {
     return <Navigate to="/" />;
   }
@@ -31,6 +51,12 @@ export default function SignIn() {
     });
   }
 
+  function openModal() {
+    setOpen(true);
+  }
+  function closeModal() {
+    setOpen(false);
+  }
   function handleSubmit(e) {
     e.preventDefault();
     setDisabled(true);
@@ -45,6 +71,9 @@ export default function SignIn() {
         navigate("/sign-in-sucess");
       })
       .catch((error) => {
+        if (error.response.status === 401) {
+          openModal();
+        }
         console.log(error);
         setDisabled(false);
       });
@@ -53,11 +82,37 @@ export default function SignIn() {
   return (
     <SignInWrapper>
       <Title>Login</Title>
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        ariaHideApp={false}
+        contentLabel="401 Login Modal"
+      >
+        <ModalSnackTopBar>Usuário ou senha inválida!</ModalSnackTopBar>
+        <LottieWrapper>
+          <Lottie
+            onClick={() => closeModal()}
+            options={{
+              loop: true,
+              autoplay: true,
+              animationData: lottie404,
+              rendererSettings: {
+                preserveAspectRatio: "xMidYMid slice",
+              },
+            }}
+            color="#000000"
+            height={180}
+            width={180}
+          />
+        </LottieWrapper>
+        <ModalButton onClick={() => closeModal()}>Ok</ModalButton>
+      </Modal>
       <Lottie
         options={{
           loop: true,
           autoplay: true,
-          animationData: animationData,
+          animationData: lottieUserLogin,
           rendererSettings: {
             preserveAspectRatio: "xMidYMid slice",
           },

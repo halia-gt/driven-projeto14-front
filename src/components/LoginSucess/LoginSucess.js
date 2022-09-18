@@ -5,9 +5,11 @@ import styled from "styled-components";
 import * as animationData from "./sucess.json";
 export default function LoginSucess() {
   const navigate = useNavigate();
+
   useEffect(() => {
-    setInterval(() => navigate("/"), 1500);
+    setTimeout(() => navigate("/"), 1800);
   }, [navigate]);
+
   return (
     <Wrapper>
       <Lottie
