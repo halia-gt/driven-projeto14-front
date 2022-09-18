@@ -15,7 +15,7 @@ import {
     MoreItemsContainer,
   } from "./styles";
 
-export default  function YouCanAlsoLike({
+export default  function SuggestionsContainer({
     clothesInfo,
     setClothesInfo,
     setImageColor,

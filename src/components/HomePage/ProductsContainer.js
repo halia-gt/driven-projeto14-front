@@ -10,7 +10,7 @@ import {
     PhotoStampContainer,
   } from "./styles";
 
-export default function NewArrivalProducts({ clothesInfo }) {
+export default function ProductsContainer({ clothesInfo }) {
     const navigate = useNavigate();
   
     return clothesInfo.map((garment, index) => {

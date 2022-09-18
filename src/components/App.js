@@ -12,6 +12,7 @@ import Bag from "./Bag/Bag";
 
 import ShippingAdress from "./ShippingAddress/ShippingAddress";
 import Categories from "./Categories/Categories";
+import FilteredProducts from "./FilteredProducts/FilteredProducts";
 
 export default function App() {
     const [user, setUser] = useState(null);
@@ -27,25 +28,33 @@ export default function App() {
                 <Route
                     path="/"
                     element={
-                        <PrivatePage>
+                        // <PrivatePage>
                             <HomePage />
-                        </PrivatePage>
+                        // </PrivatePage>
                     }
                 />
                 <Route
                     path="/details/:productId"
                     element={
-                        <PrivatePage>
+                        // <PrivatePage>
                             <DetailsPage />
-                        </PrivatePage>
+                        // </PrivatePage>
                     }
                 />
                 <Route
                     path="/categories"
                     element={
-                        <PrivatePage>
+                        // <PrivatePage
                             <Categories />
-                        </PrivatePage>
+                        // </PrivatePage>
+                    }
+                />
+                <Route
+                    path="/categories/:categoryId"
+                    element={
+                        // <PrivatePage
+                            <FilteredProducts />
+                        // </PrivatePage>
                     }
                 />
                 <Route path="/sign-in" element={<SignIn />} />

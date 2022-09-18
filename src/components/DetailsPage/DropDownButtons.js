@@ -2,7 +2,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { ButtonGroup } from "react-bootstrap";
 import { SelectionButtonsContainer, Spacer } from "./styles";
 
-export default function DropdownButtons({
+export default function DropDownButtons({
   garmetInfo,
   size,
   setSize,

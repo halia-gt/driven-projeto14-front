@@ -5,7 +5,7 @@ import Title from "../../assets/styles/Title";
 import SignWrapper from "../../assets/styles/SignWrapper";
 import SpanLink from "../../assets/styles/SpanLink";
 import { useNavigate, Navigate } from "react-router-dom";
-import { postSignUp } from "../../services/routta";
+import { postSignUp } from "../../services/api";
 
 export default function SignUp() {
     const [disabled, setDisabled] = useState(false);

@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { InfinitySpin } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
-import { getAllProducts } from "../../services/routta";
-import { CategoryModel } from "../Categories/CategoriesData";
+import { getAllProducts } from "../../services/api";
 import Footer from "../Footer/Footer";
-import NewArrivalProducts from "./NewArrivalProducts";
+import ProductsContainer from "./ProductsContainer";
 import {
   Wrapper,
   PortraitContainer,
@@ -29,13 +28,11 @@ export default function HomePage() {
     return Math.floor(Math.random() * 47);
   }
 
-  const categories = new CategoryModel().getCategories();
-  console.log(categories);
-  categories.map((e) => console.log(e.name));
   useEffect(() => {
     getAllProducts()
       .then((response) => {
         const data = response.data;
+        console.log(data)
         for (let i = 0; i < 6; i++) {
           setClothesInfo((clothes) => [...clothes, data[getRandomProduct()]]);
         }
@@ -51,8 +48,7 @@ export default function HomePage() {
         />
         <PortraitInfoContainer>
           <PortraitText>Fashion Sale</PortraitText>
-          <PortraitButton onClick={()=> navigate('/categories')}
-          >
+          <PortraitButton onClick={() => navigate("/categories")}>
             Check now!
           </PortraitButton>
         </PortraitInfoContainer>
@@ -62,7 +58,7 @@ export default function HomePage() {
           <ArrivalsHeaderTitle>
             <ArrivalsHeaderTitleText>New</ArrivalsHeaderTitleText>
             <ArrivalsHeaderTitleTextButton
-            onClick={()=> navigate('/categories')}
+              onClick={() => navigate("/categories")}
             >
               View All
             </ArrivalsHeaderTitleTextButton>
@@ -73,7 +69,7 @@ export default function HomePage() {
         </ArrivalsHeader>
         <CarouselPhotosContainer>
           {clothesInfo ? (
-            <NewArrivalProducts clothesInfo={clothesInfo} />
+            <ProductsContainer clothesInfo={clothesInfo} />
           ) : (
             <SpinnerWrapper>
               <InfinitySpin width="200" color="#db3022" />
