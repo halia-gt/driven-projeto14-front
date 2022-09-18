@@ -5,7 +5,7 @@ import Title from "../../assets/styles/Title";
 import SignWrapper from "../../assets/styles/SignWrapper";
 import SpanLink from "../../assets/styles/SpanLink";
 import { Navigate, useNavigate } from "react-router-dom";
-import { postSignIn } from "../../services/routta";
+import { postSignIn } from "../../services/api";
 import UserContext from "../../contexts/UserContext";
 
 export default function SignIn() {
