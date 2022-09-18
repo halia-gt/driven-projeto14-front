@@ -1,6 +1,6 @@
 import { IoIosArrowBack } from "react-icons/io";
 import { useEffect, useState } from "react";
-import { getAllProducts, getProductById } from "../../services/routta";
+import { addCart, getAllProducts, getProductById } from "../../services/routta";
 import { useNavigate, useParams } from "react-router-dom";
 
 import {
@@ -52,13 +52,33 @@ export default function DetailsPage() {
       })
       .catch((err) => console.log(err));
   }, [id]);
-  
+
+    function addToCart() {
+        const data = {
+            productId: id.productId,
+            name: garmetInfo.displayName,
+            size,
+            color,
+            price: garmetInfo.listPrice,
+            image: garmetInfo.defaultProductImage
+        }
+        
+        addCart(data)
+            .then(() => {
+                navigate("/bag");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+
   return garmetInfo ? (
     <Wrapper>
       <AppBar>
         <IoIosArrowBack
           onClick={() => {
-            navigate("/home");
+            navigate("/");
           }}
           size="1.5em"
         />
@@ -108,7 +128,7 @@ export default function DetailsPage() {
             .replace("/", "")}.
         </InfoDescriptionText>
       </GarmentInfoContainer>
-      <CartButton>Add to Cart</CartButton>
+      <CartButton onClick={addToCart}>Add to Cart</CartButton>
       <YouCanAlsoLike
         clothesInfo={clothesInfo}
         setClothesInfo={setClothesInfo}

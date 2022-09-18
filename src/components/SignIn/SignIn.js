@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Button from "../../assets/styles/Button";
 import Input from "../../assets/styles/Input";
 import Title from "../../assets/styles/Title";
@@ -6,8 +6,10 @@ import SignWrapper from "../../assets/styles/SignWrapper";
 import SpanLink from "../../assets/styles/SpanLink";
 import { Navigate, useNavigate } from "react-router-dom";
 import { postSignIn } from "../../services/routta";
+import UserContext from "../../contexts/UserContext";
 
 export default function SignIn() {
+    const { setUser } = useContext(UserContext);
     const [disabled, setDisabled] = useState(false);
     const [data, setData] = useState({
         email: "",
@@ -33,8 +35,9 @@ export default function SignIn() {
 
         postSignIn(data)
             .then((answer) => {
-                const { email, username, token } = answer.data;
-                const infoJSON = JSON.stringify({ email, username, token });
+                const user = answer.data;
+                setUser(user);
+                const infoJSON = JSON.stringify({ token: user.token });
                 localStorage.setItem("routtastore", infoJSON);
 
                 navigate("/");

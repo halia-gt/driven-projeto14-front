@@ -4,9 +4,11 @@ import Title from "../../assets/styles/Title";
 import Footer from "../Footer/Footer";
 import { IoIosArrowForward } from "react-icons/io";
 import { logout } from "../../services/routta";
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
 
 export default function Profile() {
-    const auth = JSON.parse(localStorage.getItem("routtastore"));
+    const { user } = useContext(UserContext);
     const navigate = useNavigate();
 
     function handleClick() {
@@ -24,10 +26,10 @@ export default function Profile() {
         <Wrapper>
             <Title>My profile</Title>
             <NameWrapper>
-                <div>{auth.username[0]}</div>
+                <div>{user.username[0]}</div>
                 <div>
-                    <h3>{auth.username}</h3>
-                    <p>{auth.email}</p>
+                    <h3>{user.username}</h3>
+                    <p>{user.email}</p>
                 </div>
             </NameWrapper>
             <Session>
@@ -37,7 +39,14 @@ export default function Profile() {
                         <p>Not your account? Logout</p>
                     </div>
                     <IoIosArrowForward />
+                </DivWrapper>
 
+                <DivWrapper onClick={() => navigate("/shipping")}>
+                    <div>
+                        <h3>Shipping address</h3>
+                        {user.address ? <p>Click to change your address</p> : <p>You have not added and address yet</p>}
+                    </div>
+                    <IoIosArrowForward />
                 </DivWrapper>
             </Session>
             <Footer profile={true} />
@@ -103,6 +112,7 @@ const DivWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 72px;
 
     h3 {
         font-size: 16px;
