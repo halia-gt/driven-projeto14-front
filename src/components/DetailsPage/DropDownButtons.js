@@ -3,8 +3,8 @@ import { ButtonGroup } from "react-bootstrap";
 import { SelectionButtonsContainer, Spacer } from "./styles";
 
 export default function DropdownButtons({
-    garmetInfo, 
-    size, 
+  garmetInfo,
+  size,
   setSize,
   setClothesInfo,
   color,

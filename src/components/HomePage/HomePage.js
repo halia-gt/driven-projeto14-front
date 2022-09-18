@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { InfinitySpin } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
 import { getAllProducts } from "../../services/routta";
+import { CategoryModel } from "../Categories/CategoriesData";
 import Footer from "../Footer/Footer";
 import NewArrivalProducts from "./NewArrivalProducts";
 import {
@@ -22,10 +24,14 @@ import {
 
 export default function HomePage() {
   const [clothesInfo, setClothesInfo] = useState([]);
+  const navigate = useNavigate();
   function getRandomProduct() {
     return Math.floor(Math.random() * 47);
   }
 
+  const categories = new CategoryModel().getCategories();
+  console.log(categories);
+  categories.map((e) => console.log(e.name));
   useEffect(() => {
     getAllProducts()
       .then((response) => {
@@ -45,14 +51,19 @@ export default function HomePage() {
         />
         <PortraitInfoContainer>
           <PortraitText>Fashion Sale</PortraitText>
-          <PortraitButton>Check now!</PortraitButton>
+          <PortraitButton onClick={()=> navigate('/categories')}
+          >
+            Check now!
+          </PortraitButton>
         </PortraitInfoContainer>
       </PortraitContainer>
       <ArrivalsContainer>
         <ArrivalsHeader>
           <ArrivalsHeaderTitle>
             <ArrivalsHeaderTitleText>New</ArrivalsHeaderTitleText>
-            <ArrivalsHeaderTitleTextButton>
+            <ArrivalsHeaderTitleTextButton
+            onClick={()=> navigate('/categories')}
+            >
               View All
             </ArrivalsHeaderTitleTextButton>
           </ArrivalsHeaderTitle>
