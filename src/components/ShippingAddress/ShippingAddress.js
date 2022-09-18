@@ -33,7 +33,6 @@ export default function ShippingAdress() {
 
         addAddress(data)
             .then((answer) => {
-                console.log(answer.data);
                 setUser(answer.data);
                 navigate("/profile");
             })
