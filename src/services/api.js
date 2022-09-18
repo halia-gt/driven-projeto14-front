@@ -25,16 +25,19 @@ function postSignIn(body) {
 }
 
 function getAllProducts() {
-  const promise = axios.get(`${BASE_URL}/products/list`);
+  const config = createHeaders();
+  const promise = axios.get(`${BASE_URL}/products/list`, config);
   return promise;
 }
 
 function getProductById(productId) {
-  const promise = axios.get(`${BASE_URL}/products/${productId}`);
+  const config = createHeaders();
+  const promise = axios.get(`${BASE_URL}/products/${productId}`, config);
   return promise;
 }
 function getProductByCategory(categoryKey) {
-  const promise = axios.get(`${BASE_URL}/category/${categoryKey}`);
+  const config = createHeaders();
+  const promise = axios.get(`${BASE_URL}/category/${categoryKey}`, config);
   return promise;
 }
 
