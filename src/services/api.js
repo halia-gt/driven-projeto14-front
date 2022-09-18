@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const BASE_URL = "http://localhost:5000";
-const BASE_URL = "https://routtastore.herokuapp.com";
+const BASE_URL = "http://localhost:5000";
+// const BASE_URL = "https://routtastore.herokuapp.com";
 
 function createHeaders() {
   const auth = JSON.parse(localStorage.getItem("routtastore"));
@@ -56,6 +56,12 @@ function addAddress(body) {
   return promise;
 }
 
+function addCard(body) {
+  const config = createHeaders();
+  const promise = axios.put(`${BASE_URL}/user/card`, body, config);
+  return promise;
+}
+
 function addCart(body) {
   const config = createHeaders();
   const promise = axios.post(`${BASE_URL}/cart`, body, config);
@@ -82,6 +88,7 @@ export {
   getProductByCategory,
   logout,
   addAddress,
+	addCard,
   getUser,
   addCart,
   getCart,

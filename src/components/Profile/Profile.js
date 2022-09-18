@@ -44,7 +44,7 @@ export default function Profile() {
 							<DivWrapper onClick={() => navigate("/shipping")}>
 									<div>
 											<h3>Shipping address</h3>
-											{user.address ? <p>Click to change your address</p> : <p>You have not added an address yet</p>}
+											{user.address ? <p>Address added. Click to change it</p> : <p>You have not added an address yet</p>}
 									</div>
 									<IoIosArrowForward />
 							</DivWrapper>
@@ -52,7 +52,7 @@ export default function Profile() {
 							<DivWrapper onClick={() => navigate("/payment")}>
 									<div>
 											<h3>Payment methods</h3>
-											{user.payment ? <p>Credit Card added</p> : <p>You have not added a card yet</p>}
+											{user.card ? <p>Credit Card added. Click to change it</p> : <p>You have not added a card yet</p>}
 									</div>
 									<IoIosArrowForward />
 							</DivWrapper>

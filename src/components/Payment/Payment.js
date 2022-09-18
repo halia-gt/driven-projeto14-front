@@ -6,6 +6,7 @@ import Title from "../../assets/styles/Title";
 import Footer from "../Footer/Footer";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
+import { addCard } from "../../services/api";
 
 export default function Payment() {
 	const { setUser } = useContext(UserContext);
@@ -29,14 +30,14 @@ export default function Payment() {
 		e.preventDefault();
 		setDisabled(true);
 
-		// addAddress(data)
-		//     .then((answer) => {
-		//         setUser(answer.data);
-		//         navigate("/profile");
-		//     })
-		//     .catch((error) => {
-		//         console.log(error);
-		//     });
+		addCard(data)
+		    .then((answer) => {
+		        setUser(answer.data);
+		        navigate("/profile");
+		    })
+		    .catch((error) => {
+		        console.log(error);
+		    });
 	}
 
 	return (
@@ -46,7 +47,7 @@ export default function Payment() {
 				<Input
 					type="text"
 					placeholder="Full Name"
-					name="	"
+					name="name"
 					value={data.name}
 					updateData={updateData}
 					disabled={disabled}
