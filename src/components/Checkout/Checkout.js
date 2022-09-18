@@ -24,9 +24,9 @@ export default function Checkout({ total }) {
 			return;
 		}
 
-		submitOrder(location.state)
+		submitOrder(location.state.cart)
 			.then(() => {
-				navigate("/success");
+				navigate(location.state.local);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -47,7 +47,7 @@ export default function Checkout({ total }) {
 						<>
 							<h4>{user.address.name}</h4>
 							<p>{user.address.address} <br /> {user.address.city}, {user.address.state} {user.address.zipcode}</p>
-						</> : <p>Add an address</p>
+						</> : <p className="red" onClick={() => navigate("/shipping", {state: {local: "/checkout"}})}>Add an address</p>
 					}
 				</div>
 
@@ -57,7 +57,7 @@ export default function Checkout({ total }) {
 						<>
 							<h4>Credit card</h4>
 							<p>**{user.card.cardNumber.substring(14)}</p>
-						</> : <p>Add a card</p>
+						</> : <p className="red" onClick={() => navigate("/payment", {state: {local: "/checkout"}})}>Add a card</p>
 					}
 				</div>
 			</section>
@@ -147,6 +147,10 @@ const Wrapper = styled.main`
 	button {
 		margin-top: 25px;
 	}
+
+    .red {
+        color: #DB3022;
+    }
 `;
 
 const TotalPrice = styled.span`

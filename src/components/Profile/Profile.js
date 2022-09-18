@@ -41,7 +41,7 @@ export default function Profile() {
 									<IoIosArrowForward />
 							</DivWrapper>
 
-							<DivWrapper onClick={() => navigate("/shipping")}>
+							<DivWrapper onClick={() => navigate("/shipping", {state: {local: "/profile"}})}>
 									<div>
 											<h3>Shipping address</h3>
 											{user.address ? <p>Address added. Click to change it</p> : <p>You have not added an address yet</p>}
@@ -49,7 +49,7 @@ export default function Profile() {
 									<IoIosArrowForward />
 							</DivWrapper>
 
-							<DivWrapper onClick={() => navigate("/payment")}>
+							<DivWrapper onClick={() => navigate("/payment", {state: {local: "/profile"}})}>
 									<div>
 											<h3>Payment methods</h3>
 											{user.card ? <p>Credit Card added. Click to change it</p> : <p>You have not added a card yet</p>}

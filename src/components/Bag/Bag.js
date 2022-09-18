@@ -63,7 +63,7 @@ export default function Bag({ total, setTotal }) {
 						<span>{total}$</span>
 					</Total>
 
-					<Button click={() => navigate("/checkout", {state: [...cart]})}>CHECK OUT</Button>
+					<Button click={() => navigate("/checkout", {state: {cart: [...cart]}})}>CHECK OUT</Button>
 				</>
 			) : (
 				<Span>Your cart is empty</Span>

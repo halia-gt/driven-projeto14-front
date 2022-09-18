@@ -4,7 +4,7 @@ import Input from "../../assets/styles/Input";
 import Button from "../../assets/styles/Button";
 import Title from "../../assets/styles/Title";
 import Footer from "../Footer/Footer";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 import { addCard } from "../../services/api";
 
@@ -18,6 +18,7 @@ export default function Payment() {
 		cvv: "",
 	});
 	const navigate = useNavigate();
+    const location = useLocation();
 
 	function updateData(e) {
 		setData({
@@ -33,7 +34,7 @@ export default function Payment() {
 		addCard(data)
 		    .then((answer) => {
 		        setUser(answer.data);
-		        navigate("/profile");
+		        navigate(location.state.local);
 		    })
 		    .catch((error) => {
 		        console.log(error);
