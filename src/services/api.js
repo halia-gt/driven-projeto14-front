@@ -80,6 +80,12 @@ function deleteFromCart(productId) {
   return promise;
 }
 
+function submitOrder(body) {
+    const config = createHeaders();
+    const promise = axios.post(`${BASE_URL}/order`, body, config);
+    return promise;
+}
+
 export {
   postSignUp,
   postSignIn,
@@ -93,4 +99,5 @@ export {
   addCart,
   getCart,
   deleteFromCart,
+  submitOrder
 };

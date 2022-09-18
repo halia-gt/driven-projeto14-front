@@ -13,9 +13,11 @@ import ShippingAdress from "./ShippingAddress/ShippingAddress";
 import Payment from "./Payment/Payment";
 import Categories from "./Categories/Categories";
 import FilteredProducts from "./FilteredProducts/FilteredProducts";
+import Checkout from "./Checkout/Checkout";
 
 export default function App() {
     const [user, setUser] = useState(null);
+    const [total, setTotal] = useState(0);
  
     return (
         <UserContext.Provider value={{user, setUser}}>
@@ -60,7 +62,7 @@ export default function App() {
                     path="/bag"
                     element={
                         <PrivatePage>
-                            <Bag />
+                            <Bag total={total} setTotal={setTotal} />
                         </PrivatePage>
                     }
                 />
@@ -85,6 +87,14 @@ export default function App() {
                     element={
                         <PrivatePage>
                             <Payment />
+                        </PrivatePage>
+                    }
+                />
+                <Route
+                    path="/checkout"
+                    element={
+                        <PrivatePage>
+                            <Checkout total={total} />
                         </PrivatePage>
                     }
                 />

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export default function Button ({ children }) {
+export default function Button ({ children, click = null }) {
     return (
-        <ButtonWrapper>
+        <ButtonWrapper onClick={click}>
             { children }
         </ButtonWrapper>    
     );
