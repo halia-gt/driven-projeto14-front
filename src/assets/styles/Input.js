@@ -11,6 +11,7 @@ export default function Input ({ children, type, placeholder, name, updateData, 
                 value={value}
                 onChange={updateData}
                 disabled={disabled}
+                autoFocus={false}
                 required
             />
         </LabelWrapper>

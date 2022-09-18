@@ -32,7 +32,6 @@ export default function HomePage() {
     getAllProducts()
       .then((response) => {
         const data = response.data;
-        console.log(data)
         for (let i = 0; i < 6; i++) {
           setClothesInfo((clothes) => [...clothes, data[getRandomProduct()]]);
         }

@@ -2,10 +2,10 @@ import { useState } from "react";
 import Button from "../../assets/styles/Button";
 import Input from "../../assets/styles/Input";
 import Title from "../../assets/styles/Title";
-import SignWrapper from "../../assets/styles/SignWrapper";
 import SpanLink from "../../assets/styles/SpanLink";
 import { useNavigate, Navigate } from "react-router-dom";
 import { postSignUp } from "../../services/api";
+import SignUpWrapper from "../../assets/styles/SignUpWrapper";
 
 export default function SignUp() {
     const [disabled, setDisabled] = useState(false);
@@ -44,7 +44,7 @@ export default function SignUp() {
     }
 
     return (
-        <SignWrapper>
+        <SignUpWrapper>
             <Title>Sign up</Title>
 
             <form onSubmit={handleSubmit}>
@@ -96,6 +96,6 @@ export default function SignUp() {
 
                 <Button>SIGN UP</Button>
             </form>
-        </SignWrapper>
+        </SignUpWrapper>
     );
 }

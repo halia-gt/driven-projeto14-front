@@ -12,4 +12,5 @@ const TitleWrapper = styled.h2`
     color: #222222;
     font-size: 34px;
     font-weight: 700;
+    margin-bottom: 25px;
 `;

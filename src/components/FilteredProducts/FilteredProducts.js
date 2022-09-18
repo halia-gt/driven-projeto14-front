@@ -38,7 +38,6 @@ export default function FilteredProducts() {
       .then((response) => setFilteredProducts(response.data))
       .catch((err) => console.log(err));
   }, [categoryName]);
-  console.log(filteredProducts);
   return (
     <Wrapper>
       <AppBar>

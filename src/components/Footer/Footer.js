@@ -22,10 +22,6 @@ export default function Footer({ home = false, news = false, shop = false, bag =
                 {home ? <IoHome /> : <IoHomeOutline />}
                 <p>Home</p>
             </HomeWrapper>
-            <NewsWrapper news={news}>
-                {news ? <IoBook /> : <IoBookOutline />}
-                <p>News</p>
-            </NewsWrapper>
             <ShopWrapper shop={shop} onClick={() => navigate("/categories")} >
                 {shop ? <IoCart /> : <IoCartOutline />}
                 <p>Shop</p>
