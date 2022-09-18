@@ -7,6 +7,7 @@ import Profile from "./Profile/Profile";
 import DetailsPage from "./DetailsPage/DetailsPage";
 import PrivatePage from "./PrivatePage/PrivatePage";
 import Bag from "./Bag/Bag";
+import Categories from "./Categories/Categories";
 
 export default function App() {
   return (
@@ -44,6 +45,7 @@ export default function App() {
         /> */}
         <Route path="/home" element={<HomePage />} />
         <Route path="/details/:productId" element={<DetailsPage />} />
+        <Route path="/categories" element={<Categories />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />

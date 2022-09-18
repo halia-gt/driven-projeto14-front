@@ -29,7 +29,6 @@ export default function DetailsPage() {
   const [color, setColor] = useState("--");
   const [imageColorIndex, setImageColor] = useState(0);
   const [clothesInfo, setClothesInfo] = useState([]);
-
   function getRandomProduct() {
     return Math.floor(Math.random() * 47);
   }
@@ -41,6 +40,7 @@ export default function DetailsPage() {
     getAllProducts()
       .then((response) => {
         const data = response.data;
+        console.log(data)
         for (let i = 0; i < 6; i++) {
           setClothesInfo((clothes) => [...clothes, data[getRandomProduct()]]);
         }
@@ -52,7 +52,7 @@ export default function DetailsPage() {
       })
       .catch((err) => console.log(err));
   }, [id]);
-
+  
   return garmetInfo ? (
     <Wrapper>
       <AppBar>
