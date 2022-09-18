@@ -14,6 +14,7 @@ import Payment from "./Payment/Payment";
 import Categories from "./Categories/Categories";
 import FilteredProducts from "./FilteredProducts/FilteredProducts";
 import Checkout from "./Checkout/Checkout";
+import Success from "./Checkout/Success";
 
 export default function App() {
     const [user, setUser] = useState(null);
@@ -95,6 +96,14 @@ export default function App() {
                     element={
                         <PrivatePage>
                             <Checkout total={total} />
+                        </PrivatePage>
+                    }
+                />
+                <Route
+                    path="/success"
+                    element={
+                        <PrivatePage>
+                            <Success />
                         </PrivatePage>
                     }
                 />
