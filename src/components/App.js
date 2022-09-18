@@ -13,6 +13,7 @@ import Bag from "./Bag/Bag";
 import ShippingAdress from "./ShippingAddress/ShippingAddress";
 import Categories from "./Categories/Categories";
 import FilteredProducts from "./FilteredProducts/FilteredProducts";
+import LoginSucess from "./LoginSucess/LoginSucess";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -54,6 +55,14 @@ export default function App() {
             element={
               <PrivatePage>
                 <FilteredProducts />
+              </PrivatePage>
+            }
+          />
+          <Route
+            path="/sign-in-sucess"
+            element={
+              <PrivatePage>
+                <LoginSucess />
               </PrivatePage>
             }
           />

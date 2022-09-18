@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SignWrapper = styled.main`
+const SignUpWrapper = styled.main`
     height: 100%;
     padding: 8px 16px;
 
@@ -12,7 +12,7 @@ const SignWrapper = styled.main`
         display: flex;
         flex-direction: column;
         justify-content: center;
-        height: 60vh;
+        height: 55vh;
     }
 
     span {
@@ -21,4 +21,4 @@ const SignWrapper = styled.main`
     }
 `;
 
-export default SignWrapper;
+export default SignUpWrapper;
