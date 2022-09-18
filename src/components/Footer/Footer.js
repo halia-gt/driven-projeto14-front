@@ -3,8 +3,6 @@ import styled from "styled-components";
 import {
     IoHomeOutline,
     IoHome,
-    IoBookOutline,
-    IoBook,
     IoCartOutline,
     IoCart,
     IoBagHandleOutline,
@@ -13,7 +11,7 @@ import {
     IoPerson
 } from "react-icons/io5";
 
-export default function Footer({ home = false, news = false, shop = false, bag = false, profile = false }) {
+export default function Footer({ home = false, shop = false, bag = false, profile = false }) {
     const navigate = useNavigate();
 
     return (
@@ -22,10 +20,6 @@ export default function Footer({ home = false, news = false, shop = false, bag =
                 {home ? <IoHome /> : <IoHomeOutline />}
                 <p>Home</p>
             </HomeWrapper>
-            <NewsWrapper news={news}>
-                {news ? <IoBook /> : <IoBookOutline />}
-                <p>News</p>
-            </NewsWrapper>
             <ShopWrapper shop={shop} onClick={() => navigate("/categories")} >
                 {shop ? <IoCart /> : <IoCartOutline />}
                 <p>Shop</p>

@@ -11,6 +11,7 @@ export default function Input({ children, type, placeholder, name, updateData, v
                 value={value}
                 onChange={updateData}
                 disabled={disabled}
+                autoFocus={false}
                 required
             />
         </LabelWrapper>
@@ -20,7 +21,7 @@ export default function Input({ children, type, placeholder, name, updateData, v
 const LabelWrapper = styled.label`
     background-color: #FFFFFF;
     box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.05);
-    border-radius: 4px;
+    border-radius: 5px;
     margin-bottom: 8px;
     font-size: 20px;
     display: flex;

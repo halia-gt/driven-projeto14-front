@@ -15,6 +15,7 @@ import Categories from "./Categories/Categories";
 import FilteredProducts from "./FilteredProducts/FilteredProducts";
 import Checkout from "./Checkout/Checkout";
 import Success from "./Checkout/Success";
+import LoginSuccess from "./LoginSucess/LoginSucess";
 
 export default function App() {
     const [user, setUser] = useState(null);
@@ -55,6 +56,14 @@ export default function App() {
                         <PrivatePage>
                             <FilteredProducts />
                         </PrivatePage>
+                    }
+                />
+                <Route
+                    path="/sign-in-sucess"
+                    element={
+                    <PrivatePage>
+                        <LoginSuccess />
+                    </PrivatePage>
                     }
                 />
                 <Route path="/sign-in" element={<SignIn />} />
