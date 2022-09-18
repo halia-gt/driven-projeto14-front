@@ -8,92 +8,92 @@ import { useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 
 export default function Payment() {
-    const { setUser } = useContext(UserContext);
-    const [disabled, setDisabled] = useState(false);
-    const [data, setData] = useState({
-        name: "",
-        cardNumber: "",
-        expireDate: "",
-        cvv: "",
-    });
-    const navigate = useNavigate();
+	const { setUser } = useContext(UserContext);
+	const [disabled, setDisabled] = useState(false);
+	const [data, setData] = useState({
+		name: "",
+		cardNumber: "",
+		expireDate: "",
+		cvv: "",
+	});
+	const navigate = useNavigate();
 
-    function updateData(e) {
-        setData({
-            ...data,
-            [e.target.name]: e.target.value
-        });
-    }
+	function updateData(e) {
+		setData({
+			...data,
+			[e.target.name]: e.target.value
+		});
+	}
 
-    async function handleSubmit(e) {
-        e.preventDefault();
-        setDisabled(true);
+	async function handleSubmit(e) {
+		e.preventDefault();
+		setDisabled(true);
 
-        // addAddress(data)
-        //     .then((answer) => {
-        //         setUser(answer.data);
-        //         navigate("/profile");
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //     });
-    }
+		// addAddress(data)
+		//     .then((answer) => {
+		//         setUser(answer.data);
+		//         navigate("/profile");
+		//     })
+		//     .catch((error) => {
+		//         console.log(error);
+		//     });
+	}
 
-    return (
-        <Wrapper>
-            <Title>Add new card</Title>
-            <form onSubmit={handleSubmit}>
-                <Input
-                    type="text"
-                    placeholder="Full Name"
-                    name="name"
-                    value={data.name}
-                    updateData={updateData}
-                    disabled={disabled}
-                >
-                    Name on card
-                </Input>
+	return (
+		<Wrapper>
+			<Title>Add new card</Title>
+			<form onSubmit={handleSubmit}>
+				<Input
+					type="text"
+					placeholder="Full Name"
+					name="	"
+					value={data.name}
+					updateData={updateData}
+					disabled={disabled}
+				>
+					Name on card
+				</Input>
 
-                <Input
-                    type="number"
-                    placeholder="Card number"
-                    name="cardNumber"
-                    value={data.address}
-                    updateData={updateData}
-                    disabled={disabled}
-                >
-                    Card number
-                </Input>
+				<Input
+					type="number"
+					placeholder="Card number"
+					name="cardNumber"
+					value={data.cardNumber}
+					updateData={updateData}
+					disabled={disabled}
+				>
+					Card number
+				</Input>
 
-                <Input
-                    type="date"
-                    placeholder="Expire date"
-                    name="expireDate"
-                    value={data.city}
-                    updateData={updateData}
-                    disabled={disabled}
-                >
-                    Expire date
-                </Input>
+				<Input
+					type="text"
+					placeholder="Expire date"
+					name="expireDate"
+					value={data.expireDate}
+					updateData={updateData}
+					disabled={disabled}
+				>
+					Expire date
+				</Input>
 
-                <Input
-                    type="number"
-                    placeholder="CVV"
-                    name="cvv"
-                    value={data.state}
-                    updateData={updateData}
-                    disabled={disabled}
-                >
-                    CVV
-                </Input>
+				<Input
+					type="number"
+					placeholder="CVV"
+					name="cvv"
+					value={data.cvv}
+					updateData={updateData}
+					disabled={disabled}
+				>
+					CVV
+				</Input>
 
-                <Button>ADD CARD</Button>
-            </form>
+				<Button>ADD CARD</Button>
+			</form>
 
-            <Footer profile={true} />
-        </Wrapper>
+			<Footer profile={true} />
+		</Wrapper>
 
-    );
+	);
 }
 
 const Wrapper = styled.main`

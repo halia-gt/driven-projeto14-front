@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000";
-//const BASE_URL = "https://routtastore.herokuapp.com";
+// const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://routtastore.herokuapp.com";
 
 function createHeaders() {
   const auth = JSON.parse(localStorage.getItem("routtastore"));

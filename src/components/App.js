@@ -9,14 +9,10 @@ import Profile from "./Profile/Profile";
 import DetailsPage from "./DetailsPage/DetailsPage";
 import PrivatePage from "./PrivatePage/PrivatePage";
 import Bag from "./Bag/Bag";
-
 import ShippingAdress from "./ShippingAddress/ShippingAddress";
-<<<<<<< HEAD
 import Payment from "./Payment/Payment";
-=======
 import Categories from "./Categories/Categories";
 import FilteredProducts from "./FilteredProducts/FilteredProducts";
->>>>>>> main
 
 export default function App() {
     const [user, setUser] = useState(null);
@@ -26,39 +22,36 @@ export default function App() {
             <BrowserRouter>
             <GlobalStyles />
             <Routes>
-                {/* Este código é o que vale, estou deixando
-                    comentado apenas para testar a rota home e details
-                */ }
                 <Route
                     path="/"
                     element={
-                        // <PrivatePage>
+                        <PrivatePage>
                             <HomePage />
-                        // </PrivatePage>
+                        </PrivatePage>
                     }
                 />
                 <Route
                     path="/details/:productId"
                     element={
-                        // <PrivatePage>
+                        <PrivatePage>
                             <DetailsPage />
-                        // </PrivatePage>
+                        </PrivatePage>
                     }
                 />
                 <Route
                     path="/categories"
                     element={
-                        // <PrivatePage
+                        <PrivatePage>
                             <Categories />
-                        // </PrivatePage>
+                        </PrivatePage>
                     }
                 />
                 <Route
                     path="/categories/:categoryId"
                     element={
-                        // <PrivatePage
+                        <PrivatePage>
                             <FilteredProducts />
-                        // </PrivatePage>
+                        </PrivatePage>
                     }
                 />
                 <Route path="/sign-in" element={<SignIn />} />
@@ -95,13 +88,6 @@ export default function App() {
                         </PrivatePage>
                     }
                 />
-                {/* <Route path="/home" element={<HomePage />} />
-                <Route path="/details/:productId" element={<DetailsPage />} />
-                <Route path="/sign-in" element={<SignIn />} />
-                <Route path="/sign-up" element={<SignUp />} />
-                <Route path="/bag" element={<Bag />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/shipping" element={<ShippingAdress />} /> */}
             </Routes>
             </BrowserRouter>
         </UserContext.Provider>
