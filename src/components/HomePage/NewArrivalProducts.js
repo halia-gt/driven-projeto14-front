@@ -17,7 +17,7 @@ export default function NewArrivalProducts({ clothesInfo }) {
       return (
         <PhotoDetailsContainer
           onClick={() => {
-            navigate(`/x/${garment._id}`);
+            navigate(`/details/${garment._id}`);
           }}
           key={index}
         >

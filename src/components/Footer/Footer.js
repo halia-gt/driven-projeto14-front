@@ -18,7 +18,7 @@ export default function Footer({ home = false, news = false, shop = false, bag =
 
     return (
         <Wrapper>
-            <HomeWrapper home={home} onClick={() => navigate("/home")}>
+            <HomeWrapper home={home} onClick={() => navigate("/")}>
                 {home ? <IoHome /> : <IoHomeOutline />}
                 <p>Home</p>
             </HomeWrapper>

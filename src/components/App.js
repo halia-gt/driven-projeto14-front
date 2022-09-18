@@ -11,6 +11,7 @@ import PrivatePage from "./PrivatePage/PrivatePage";
 import Bag from "./Bag/Bag";
 
 import ShippingAdress from "./ShippingAddress/ShippingAddress";
+import Categories from "./Categories/Categories";
 
 export default function App() {
     const [user, setUser] = useState(null);
@@ -36,6 +37,14 @@ export default function App() {
                     element={
                         <PrivatePage>
                             <DetailsPage />
+                        </PrivatePage>
+                    }
+                />
+                <Route
+                    path="/categories"
+                    element={
+                        <PrivatePage>
+                            <Categories />
                         </PrivatePage>
                     }
                 />
@@ -76,5 +85,4 @@ export default function App() {
             </BrowserRouter>
         </UserContext.Provider>
     );
->>>>>>> main
 }
