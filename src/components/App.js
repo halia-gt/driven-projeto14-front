@@ -10,6 +10,7 @@ import DetailsPage from "./DetailsPage/DetailsPage";
 import PrivatePage from "./PrivatePage/PrivatePage";
 import Bag from "./Bag/Bag";
 import ShippingAdress from "./ShippingAddress/ShippingAddress";
+import Payment from "./Payment/Payment";
 
 export default function App() {
     const [user, setUser] = useState(null);
@@ -61,6 +62,14 @@ export default function App() {
                     element={
                         <PrivatePage>
                             <ShippingAdress />
+                        </PrivatePage>
+                    }
+                />
+                <Route
+                    path="/payment"
+                    element={
+                        <PrivatePage>
+                            <Payment />
                         </PrivatePage>
                     }
                 />

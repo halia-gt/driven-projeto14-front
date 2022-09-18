@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Title from "../../assets/styles/Title";
 import Footer from "../Footer/Footer";
@@ -44,7 +44,15 @@ export default function Profile() {
                 <DivWrapper onClick={() => navigate("/shipping")}>
                     <div>
                         <h3>Shipping address</h3>
-                        {user.address ? <p>Click to change your address</p> : <p>You have not added and address yet</p>}
+                        {user.address ? <p>Click to change your address</p> : <p>You have not added an address yet</p>}
+                    </div>
+                    <IoIosArrowForward />
+                </DivWrapper>
+
+                <DivWrapper onClick={() => navigate("/payment")}>
+                    <div>
+                        <h3>Payment methods</h3>
+                        {user.payment ? <p>Credit Card added</p> : <p>You have not added a card yet</p>}
                     </div>
                     <IoIosArrowForward />
                 </DivWrapper>

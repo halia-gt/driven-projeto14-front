@@ -4,19 +4,17 @@ import Input from "../../assets/styles/Input";
 import Button from "../../assets/styles/Button";
 import Title from "../../assets/styles/Title";
 import Footer from "../Footer/Footer";
-import { addAddress } from "../../services/routta";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 
-export default function ShippingAdress() {
+export default function Payment() {
     const { setUser } = useContext(UserContext);
     const [disabled, setDisabled] = useState(false);
     const [data, setData] = useState({
         name: "",
-        address: "",
-        city: "",
-        state: "",
-        zipcode: ""
+        cardNumber: "",
+        expireDate: "",
+        cvv: "",
     });
     const navigate = useNavigate();
 
@@ -31,19 +29,19 @@ export default function ShippingAdress() {
         e.preventDefault();
         setDisabled(true);
 
-        addAddress(data)
-            .then((answer) => {
-                setUser(answer.data);
-                navigate("/profile");
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        // addAddress(data)
+        //     .then((answer) => {
+        //         setUser(answer.data);
+        //         navigate("/profile");
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
     }
 
     return (
         <Wrapper>
-            <Title>Add address</Title>
+            <Title>Add new card</Title>
             <form onSubmit={handleSubmit}>
                 <Input
                     type="text"
@@ -53,54 +51,43 @@ export default function ShippingAdress() {
                     updateData={updateData}
                     disabled={disabled}
                 >
-                    Full name
-                </Input>
-
-                <Input
-                    type="text"
-                    placeholder="Address"
-                    name="address"
-                    value={data.address}
-                    updateData={updateData}
-                    disabled={disabled}
-                >
-                    Address
-                </Input>
-
-                <Input
-                    type="text"
-                    placeholder="City"
-                    name="city"
-                    value={data.city}
-                    updateData={updateData}
-                    disabled={disabled}
-                >
-                    City
-                </Input>
-
-                <Input
-                    type="text"
-                    placeholder="State/Province/Region"
-                    name="state"
-                    value={data.state}
-                    updateData={updateData}
-                    disabled={disabled}
-                >
-                    State/Province/Region
+                    Name on card
                 </Input>
 
                 <Input
                     type="number"
-                    placeholder="Zip Code (Postal Code)"
-                    name="zipcode"
-                    value={data.zipcode}
+                    placeholder="Card number"
+                    name="cardNumber"
+                    value={data.address}
                     updateData={updateData}
                     disabled={disabled}
                 >
-                    Zip Code (Postal Code)
+                    Card number
                 </Input>
 
-                <Button>SAVE ADDRESS</Button>
+                <Input
+                    type="date"
+                    placeholder="Expire date"
+                    name="expireDate"
+                    value={data.city}
+                    updateData={updateData}
+                    disabled={disabled}
+                >
+                    Expire date
+                </Input>
+
+                <Input
+                    type="number"
+                    placeholder="CVV"
+                    name="cvv"
+                    value={data.state}
+                    updateData={updateData}
+                    disabled={disabled}
+                >
+                    CVV
+                </Input>
+
+                <Button>ADD CARD</Button>
             </form>
 
             <Footer profile={true} />
@@ -126,4 +113,4 @@ const Wrapper = styled.main`
     button {
         margin-top: 40px;
     }
-`;
+`;  
