@@ -59,7 +59,7 @@ export default function Payment() {
 				</Input>
 
 				<Input
-					type="number"
+					type="text"
 					placeholder="Card number (16 digits)"
 					name="cardNumber"
 					value={data.cardNumber}
