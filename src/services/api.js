@@ -83,7 +83,8 @@ function deleteFromCart(productId) {
   return promise;
 }
 
-function submitOrder(body) {
+function submitOrder(cart) {
+    const body = {cart: cart};
     const config = createHeaders();
     const promise = axios.post(`${BASE_URL}/order`, body, config);
     return promise;
