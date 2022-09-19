@@ -38,6 +38,7 @@ export default function ShippingAdress() {
                 navigate(location.state.local);
             })
             .catch((error) => {
+                alert("Favor verificar os dados!");
                 console.log(error);
             });
     }
