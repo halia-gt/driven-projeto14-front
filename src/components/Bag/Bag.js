@@ -23,7 +23,7 @@ export default function Bag({ total, setTotal }) {
 			.catch((error) => {
 				console.log(error);
 			});
-	}, [reload]);
+	}, [reload, setTotal]);
 
 	function removeFromCart(id) {
 		deleteFromCart(id)

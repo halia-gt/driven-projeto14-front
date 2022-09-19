@@ -65,10 +65,6 @@ const HomeWrapper = styled.div`
     }
 `;
 
-const NewsWrapper = styled(HomeWrapper)`
-    color: ${props => props.news ? "#DB3022" : "#9B9B9B"};
-`;
-
 const ShopWrapper = styled(HomeWrapper)`
     color: ${props => props.shop ? "#DB3022" : "#9B9B9B"};
 `;

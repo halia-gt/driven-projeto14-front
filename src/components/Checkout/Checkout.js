@@ -26,7 +26,7 @@ export default function Checkout({ total }) {
 
 		submitOrder(location.state.cart)
 			.then(() => {
-				navigate(location.state.local);
+				navigate("/success");
 			})
 			.catch((error) => {
 				console.log(error);
