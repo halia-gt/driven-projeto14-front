@@ -38,6 +38,7 @@ export default function Payment() {
 		        navigate(location.state.local);
 		    })
 		    .catch((error) => {
+			alert("Favor verificar os dados!");
 			setDisabled(false);
 		        console.log(error);
 		    });
