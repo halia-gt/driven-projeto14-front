@@ -34,9 +34,11 @@ export default function Payment() {
 		addCard(data)
 		    .then((answer) => {
 		        setUser(answer.data);
+			setDisable(false);
 		        navigate(location.state.local);
 		    })
 		    .catch((error) => {
+			setDisable(false);
 		        console.log(error);
 		    });
 	}
