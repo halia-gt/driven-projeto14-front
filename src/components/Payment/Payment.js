@@ -60,9 +60,10 @@ export default function Payment() {
 
 				<Input
 					type="number"
-					placeholder="Card number"
+					placeholder="Card number (16 digits)"
 					name="cardNumber"
 					value={data.cardNumber}
+					minlength="16"
 					updateData={updateData}
 					disabled={disabled}
 				>
@@ -71,8 +72,9 @@ export default function Payment() {
 
 				<Input
 					type="text"
-					placeholder="Expire date"
+					placeholder="Expire date (MM/YY)"
 					name="expireDate"
+					minlength="3"
 					value={data.expireDate}
 					updateData={updateData}
 					disabled={disabled}
@@ -82,7 +84,8 @@ export default function Payment() {
 
 				<Input
 					type="number"
-					placeholder="CVV"
+					placeholder="CVV (3 digits)"
+					minlength="3"
 					name="cvv"
 					value={data.cvv}
 					updateData={updateData}
