@@ -76,6 +76,7 @@ export default function SignUp() {
                     placeholder="Password"
                     name="password"
                     value={data.password}
+                    minlength="6"
                     updateData={updateData}
                     disabled={disabled}
                 >
@@ -87,6 +88,7 @@ export default function SignUp() {
                     placeholder="Confirm password"
                     name="confirm_password"
                     value={data.confirm_password}
+                    minlength="6"
                     updateData={updateData}
                     disabled={disabled}
                 >
