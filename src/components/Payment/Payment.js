@@ -64,7 +64,6 @@ export default function Payment() {
 					placeholder="Card number (16 digits)"
 					name="cardNumber"
 					value={data.cardNumber}
-					minlength="16"
 					maxlength="16"
 					updateData={updateData}
 					disabled={disabled}
