@@ -38,6 +38,7 @@ export default function SignUp() {
                 navigate("/sign-in");
             })
             .catch((error) => {
+                alert("Favor verificar os dados!");
                 console.log(error.request.response);
                 setDisabled(false);
             });
