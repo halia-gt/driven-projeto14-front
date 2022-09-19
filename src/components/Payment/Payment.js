@@ -64,6 +64,7 @@ export default function Payment() {
 					name="cardNumber"
 					value={data.cardNumber}
 					minlength="16"
+					maxlength="16"
 					updateData={updateData}
 					disabled={disabled}
 				>
