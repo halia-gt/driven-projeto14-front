@@ -1,8 +1,5 @@
 import axios from "axios";
 
-// const BASE_URL = "http://localhost:5000";
-const BASE_URL = "https://routtastore.herokuapp.com";
-
 function createHeaders() {
   const auth = JSON.parse(localStorage.getItem("routtastore"));
   const config = {
@@ -15,78 +12,78 @@ function createHeaders() {
 }
 
 function postSignUp(body) {
-  const promise = axios.post(`${BASE_URL}/auth/sign-up`, body);
+  const promise = axios.post(`${process.env.REACT_APP_API_BASE_URL}/auth/sign-up`, body);
   return promise;
 }
 
 function postSignIn(body) {
-  const promise = axios.post(`${BASE_URL}/auth/sign-in`, body);
+  const promise = axios.post(`${process.env.REACT_APP_API_BASE_URL}/auth/sign-in`, body);
   return promise;
 }
 
 function getAllProducts() {
   const config = createHeaders();
-  const promise = axios.get(`${BASE_URL}/products/list`, config);
+  const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/products/list`, config);
   return promise;
 }
 
 function getProductById(productId) {
   const config = createHeaders();
-  const promise = axios.get(`${BASE_URL}/products/${productId}`, config);
+  const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/products/${productId}`, config);
   return promise;
 }
 function getProductByCategory(categoryKey) {
   const config = createHeaders();
-  const promise = axios.get(`${BASE_URL}/category/${categoryKey}`, config);
+  const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/category/${categoryKey}`, config);
   return promise;
 }
 
 function logout() {
   const config = createHeaders();
-  const promise = axios.delete(`${BASE_URL}/auth/sign-in`, config);
+  const promise = axios.delete(`${process.env.REACT_APP_API_BASE_URL}/auth/sign-in`, config);
   return promise;
 }
 
 function getUser() {
   const config = createHeaders();
-  const promise = axios.get(`${BASE_URL}/auth/sign-in`, config);
+  const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/auth/sign-in`, config);
   return promise;
 }
 
 function addAddress(body) {
   const config = createHeaders();
-  const promise = axios.put(`${BASE_URL}/user/address`, body, config);
+  const promise = axios.put(`${process.env.REACT_APP_API_BASE_URL}/user/address`, body, config);
   return promise;
 }
 
 function addCard(body) {
   const config = createHeaders();
-  const promise = axios.put(`${BASE_URL}/user/card`, body, config);
+  const promise = axios.put(`${process.env.REACT_APP_API_BASE_URL}/user/card`, body, config);
   return promise;
 }
 
 function addCart(body) {
   const config = createHeaders();
-  const promise = axios.post(`${BASE_URL}/cart`, body, config);
+  const promise = axios.post(`${process.env.REACT_APP_API_BASE_URL}/cart`, body, config);
   return promise;
 }
 
 function getCart() {
   const config = createHeaders();
-  const promise = axios.get(`${BASE_URL}/cart`, config);
+  const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/cart`, config);
   return promise;
 }
 
 function deleteFromCart(productId) {
   const config = createHeaders();
-  const promise = axios.delete(`${BASE_URL}/cart/${productId}`, config);
+  const promise = axios.delete(`${process.env.REACT_APP_API_BASE_URL}/cart/${productId}`, config);
   return promise;
 }
 
 function submitOrder(cart) {
     const body = {cart: cart};
     const config = createHeaders();
-    const promise = axios.post(`${BASE_URL}/order`, body, config);
+    const promise = axios.post(`${process.env.REACT_APP_API_BASE_URL}/order`, body, config);
     return promise;
 }
 
