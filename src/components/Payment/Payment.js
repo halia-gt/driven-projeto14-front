@@ -34,11 +34,11 @@ export default function Payment() {
 		addCard(data)
 		    .then((answer) => {
 		        setUser(answer.data);
-			setDisable(false);
+			setDisabled(false);
 		        navigate(location.state.local);
 		    })
 		    .catch((error) => {
-			setDisable(false);
+			setDisabled(false);
 		        console.log(error);
 		    });
 	}
