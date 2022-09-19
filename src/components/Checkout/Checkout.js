@@ -1,17 +1,16 @@
 import { IoIosArrowBack } from "react-icons/io";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "../../assets/styles/Button";
 import styled from "styled-components";
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import { submitOrder } from "../../services/api";
 
-export default function Checkout({ total }) {
+export default function Checkout({ total, cart }) {
 	const { user } = useContext(UserContext);
 	const navigate = useNavigate();
 	const delivery = 15;
 	const summary = Math.ceil(Number(total) + delivery).toFixed(2);
-	const location = useLocation();
 
 	function handleClick() {
 		if(!user.address) {
@@ -24,7 +23,7 @@ export default function Checkout({ total }) {
 			return;
 		}
 
-		submitOrder(location.state.cart)
+		submitOrder(cart)
 			.then(() => {
 				navigate("/success");
 			})

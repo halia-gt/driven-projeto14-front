@@ -20,6 +20,7 @@ import LoginSuccess from "./LoginSucess/LoginSucess";
 export default function App() {
     const [user, setUser] = useState(null);
     const [total, setTotal] = useState(0);
+    const [cart, setCart] = useState([]);
  
     return (
         <UserContext.Provider value={{user, setUser}}>
@@ -72,7 +73,7 @@ export default function App() {
                     path="/bag"
                     element={
                         <PrivatePage>
-                            <Bag total={total} setTotal={setTotal} />
+                            <Bag total={total} setTotal={setTotal} cart={cart} setCart={setCart} />
                         </PrivatePage>
                     }
                 />
@@ -104,7 +105,7 @@ export default function App() {
                     path="/checkout"
                     element={
                         <PrivatePage>
-                            <Checkout total={total} />
+                            <Checkout total={total} cart={cart} />
                         </PrivatePage>
                     }
                 />

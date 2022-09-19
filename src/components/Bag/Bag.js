@@ -7,9 +7,8 @@ import { useEffect, useState } from "react";
 import { deleteFromCart, getCart } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 
-export default function Bag({ total, setTotal }) {
+export default function Bag({ total, setTotal, cart, setCart }) {
 	const [reload, setReload] = useState(false);
-	const [cart, setCart] = useState([]);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -63,7 +62,7 @@ export default function Bag({ total, setTotal }) {
 						<span>{total}$</span>
 					</Total>
 
-					<Button click={() => navigate("/checkout", {state: {cart: [...cart]}})}>CHECK OUT</Button>
+					<Button click={() => navigate("/checkout")}>CHECK OUT</Button>
 				</>
 			) : (
 				<Span>Your cart is empty</Span>
