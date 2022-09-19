@@ -5,72 +5,73 @@ import Button from "../../assets/styles/Button";
 import { GoTrashcan } from "react-icons/go";
 import { useEffect, useState } from "react";
 import { deleteFromCart, getCart } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
-export default function Bag() {
-  const [reload, setReload] = useState(false);
-  const [cart, setCart] = useState([]);
-  const [total, setTotal] = useState(0);
+export default function Bag({ total, setTotal }) {
+	const [reload, setReload] = useState(false);
+	const [cart, setCart] = useState([]);
+	const navigate = useNavigate();
 
-  useEffect(() => {
-    getCart()
-      .then((answer) => {
-        setCart(answer.data);
-        let sum = 0;
-        answer.data.forEach((product) => (sum = sum + Number(product.price)));
-        setTotal(sum.toFixed(2));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [reload]);
+	useEffect(() => {
+		getCart()
+			.then((answer) => {
+				setCart(answer.data);
+				let sum = 0;
+				answer.data.forEach((product) => (sum = sum + Number(product.price)));
+				setTotal(sum.toFixed(2));
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}, [reload]);
 
-  function removeFromCart(id) {
-    deleteFromCart(id)
-      .then(() => {
-        setReload(!reload);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+	function removeFromCart(id) {
+		deleteFromCart(id)
+			.then(() => {
+				setReload(!reload);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
 
-  return (
-    <Wrapper>
-      <Title>My bag</Title>
+	return (
+		<Wrapper>
+			<Title>My bag</Title>
 
-      <section>
-        {cart.map((product) => (
-          <Product key={product._id}>
-            <img src={product.image} alt="" />
-            <div>
-              <GoTrashcan onClick={() => removeFromCart(product._id)} />
-              <h3>{product.name}</h3>
-              <p>
-                Color: <span>{product.color}</span> Size:{" "}
-                <span>{product.size}</span>
-              </p>
-              <h4>{product.price}$</h4>
-            </div>
-          </Product>
-        ))}
-      </section>
+			<section>
+				{cart.map((product) => (
+					<Product key={product._id}>
+						<img src={product.image} alt="" />
+						<div>
+							<GoTrashcan onClick={() => removeFromCart(product._id)} />
+							<h3>{product.name}</h3>
+							<p>
+								Color: <span>{product.color}</span> Size:{" "}
+								<span>{product.size}</span>
+							</p>
+							<h4>{product.price}$</h4>
+						</div>
+					</Product>
+				))}
+			</section>
 
-      {cart.length > 0 ? (
-        <>
-          <Total>
-            <p>Total amount:</p>
-            <span>{total}$</span>
-          </Total>
+			{cart.length > 0 ? (
+				<>
+					<Total>
+						<p>Total amount:</p>
+						<span>{total}$</span>
+					</Total>
 
-          <Button>CHECK OUT</Button>
-        </>
-      ) : (
-        <Span>Your cart is empty</Span>
-      )}
+					<Button click={() => navigate("/checkout", {state: {cart: [...cart]}})}>CHECK OUT</Button>
+				</>
+			) : (
+				<Span>Your cart is empty</Span>
+			)}
 
-      <Footer bag={true} />
-    </Wrapper>
-  );
+			<Footer bag={true} />
+		</Wrapper>
+	);
 }
 
 const Wrapper = styled.main`

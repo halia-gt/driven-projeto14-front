@@ -22,7 +22,7 @@ export default function PrivatePage({ children }) {
         if(auth && !user) {
             getUserAPI();
         }
-    }, []);
+    }, [auth, setUser, user]);
 
     if (auth) {
         return (

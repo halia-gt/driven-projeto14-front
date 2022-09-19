@@ -8,54 +8,58 @@ import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 
 export default function Profile() {
-  const { user } = useContext(UserContext);
-  const navigate = useNavigate();
+	const { user } = useContext(UserContext);
+	const navigate = useNavigate();
 
-  function handleClick() {
-    logout()
-      .then(() => {
-        localStorage.removeItem("routtastore");
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+	function handleClick() {
+		logout()
+				.then(() => {
+						localStorage.removeItem("routtastore");
+						navigate("/");
+				})
+				.catch((error) => {
+						console.log(error);
+				});
+	}
 
-  return (
-    <Wrapper>
-      <Title>My profile</Title>
-      <NameWrapper>
-        <div>{user.username[0]}</div>
-        <div>
-          <h3>{user.username}</h3>
-          <p>{user.email}</p>
-        </div>
-      </NameWrapper>
-      <Session>
-        <DivWrapper onClick={handleClick}>
-          <div>
-            <h3>Logout</h3>
-            <p>Not your account? Logout</p>
-          </div>
-          <IoIosArrowForward />
-        </DivWrapper>
+	return (
+			<Wrapper>
+					<Title>My profile</Title>
+					<NameWrapper>
+							<div>{user.username[0]}</div>
+							<div>
+									<h3>{user.username}</h3>
+									<p>{user.email}</p>
+							</div>
+					</NameWrapper>
+					<Session>
+							<DivWrapper onClick={handleClick}>
+									<div>
+											<h3>Logout</h3>
+											<p>Not your account? Logout</p>
+									</div>
+									<IoIosArrowForward />
+							</DivWrapper>
 
-        <DivWrapper onClick={() => navigate("/shipping")}>
-          <div>
-            <h3>Shipping address</h3>
-            {user.address ? (
-              <p>Click to change your address</p>
-            ) : (
-              <p>You have not added and address yet</p>
-            )}
-          </div>
-          <IoIosArrowForward />
-        </DivWrapper>
-      </Session>
-      <Footer profile={true} />
-    </Wrapper>
-  );
+							<DivWrapper onClick={() => navigate("/shipping", {state: {local: "/profile"}})}>
+									<div>
+											<h3>Shipping address</h3>
+											{user.address ? <p>Address added. Click to change it</p> : <p>You have not added an address yet</p>}
+									</div>
+									<IoIosArrowForward />
+							</DivWrapper>
+
+							<DivWrapper onClick={() => navigate("/payment", {state: {local: "/profile"}})}>
+									<div>
+											<h3>Payment methods</h3>
+											{user.card ? <p>Credit Card added. Click to change it</p> : <p>You have not added a card yet</p>}
+									</div>
+									<IoIosArrowForward />
+							</DivWrapper>
+					</Session>
+					<Footer profile={true} />
+			</Wrapper>
+	);
 }
 
 const Wrapper = styled.main`

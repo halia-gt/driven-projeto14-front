@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export default function Input ({ children, type, placeholder, name, updateData, value, disabled }) {
+export default function Input({ children, type, placeholder, name, updateData, value, disabled }) {
     return (
         <LabelWrapper>
-            { value.length > 0 ? children : null }
+            {value.length > 0 ? children : null}
             <input
                 type={type}
                 placeholder={placeholder}

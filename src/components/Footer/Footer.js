@@ -3,8 +3,6 @@ import styled from "styled-components";
 import {
     IoHomeOutline,
     IoHome,
-    IoBookOutline,
-    IoBook,
     IoCartOutline,
     IoCart,
     IoBagHandleOutline,
@@ -13,7 +11,7 @@ import {
     IoPerson
 } from "react-icons/io5";
 
-export default function Footer({ home = false, news = false, shop = false, bag = false, profile = false }) {
+export default function Footer({ home = false, shop = false, bag = false, profile = false }) {
     const navigate = useNavigate();
 
     return (
